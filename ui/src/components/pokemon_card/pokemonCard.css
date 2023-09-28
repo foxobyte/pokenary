@@ -1,0 +1,27 @@
+.pokemon-card-wrapper {
+    height: 256px;
+    width: 184px;
+    transform: 
+        perspective(5000px)
+        rotateX(20deg)
+        rotateY(20deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pokemon-card {
+    
+}
+
+.pokemon-card-image {
+    height: 256px;
+    width: 184px;
+    object-fit: contain;
+}
+
+.pokemon-card-overlay {
+    position: absolute;
+    height: 256px;
+    width: 184px;
+}

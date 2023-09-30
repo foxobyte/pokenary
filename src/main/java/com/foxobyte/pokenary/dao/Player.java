@@ -6,21 +6,19 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
-@Table(name = "pokemon_sprites")
+@Table(name = "players")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PokemonSprite {
+public class Player {
     @Id
     @GeneratedValue
-    private Integer id;
-    private Integer pokemonId;
-    @Lob
-    @Column(name = "image", length = 1000)
-    private byte[] image;
-    private String fileName;
-    private String fileType;
+    private Long id;
+    private String name;
+//    @ManyToOne
+//    private List<Pokemon> pokemon;
 }

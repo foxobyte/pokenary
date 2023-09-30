@@ -7,6 +7,16 @@
     overflow: hidden;
 }
 
+.dot {
+    position: absolute;
+    left: 372px;
+    top: 439px;
+    background-color: red;
+    height: 3px;
+    width: 3px;
+    border-radius: 50%;
+}
+
 #home-page-hero-title {
     font-size: 5rem;
     font-weight: 900;

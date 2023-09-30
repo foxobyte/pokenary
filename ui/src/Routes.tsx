@@ -1,6 +1,7 @@
 import { Suspense, lazy } from 'react';
 import { RouteObject, createRoutesFromElements, Route, Outlet } from 'react-router';
 import LoadingScreen from './pages/loading/LoadingScreen';
+import Battle from './pages/battle/Battle';
 
 const Loadable = (Component: any) => (props: JSX.IntrinsicAttributes) =>
   (
@@ -19,6 +20,7 @@ let routes = createRoutesFromElements(
         <Route path="/" element={<HomePage />} />
         <Route path="/pokedex" element={<PokedexPage />} />
         <Route path="/pokedex/:pokemon" element={<PokemonPage />} loader={(params) => {return params}}/>
+        <Route path="/battle" element={<Battle />} />
     </Route>
 )
 

@@ -1,0 +1,10 @@
+.pokemon-sprite {
+    z-index: 1;
+    left: 20px;
+    width: 102px;
+    height: 102px;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: 80% 80%;
+}

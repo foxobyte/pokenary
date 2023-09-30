@@ -2,7 +2,7 @@ type Pokemon = {
     id: number,
     name: string,
     nationalNumber: number,
-    type: Array<string>,
+    pokemonType: Array<string>,
     attack: number,
     defense: number,
     hp: number,

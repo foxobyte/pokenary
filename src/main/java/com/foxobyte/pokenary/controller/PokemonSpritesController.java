@@ -1,8 +1,7 @@
 package com.foxobyte.pokenary.controller;
 
-import com.foxobyte.pokenary.dao.PokemonCard;
-import com.foxobyte.pokenary.service.PokemonCardService;
-import com.sun.net.httpserver.Headers;
+import com.foxobyte.pokenary.dao.PokemonSprite;
+import com.foxobyte.pokenary.service.PokemonSpriteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -12,13 +11,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
-import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/cards")
-public class PokemonCardController {
+@RequestMapping("/api/v1/sprites")
+public class PokemonSpritesController {
     @Autowired
-    PokemonCardService service;
+    PokemonSpriteService service;
 
 //    @GetMapping("/{id}")
 //    public ResponseEntity<?> getPokemonCard(
@@ -32,14 +30,14 @@ public class PokemonCardController {
 //    }
 
     @GetMapping("/pokemon/{pokemonId}")
-    public ResponseEntity<byte[]> getPokemonCards(
+    public ResponseEntity<?> getPokemonCards(
             @PathVariable("pokemonId") Integer pokemonId
     ) {
         try {
-            PokemonCard pokemonCard = service.getPokemonCard(pokemonId);
+            PokemonSprite sprite = service.getPokemonSprites(pokemonId);
             HttpHeaders headers = new HttpHeaders();
-            headers.add("Content-Type", pokemonCard.getFileType());
-            return new ResponseEntity(pokemonCard.getImage(), headers, HttpStatus.OK);
+            headers.add("Content-Type", sprite.getFileType());
+            return new ResponseEntity(sprite.getImage(), headers, HttpStatus.OK);
         } catch (Exception e) {
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
         }

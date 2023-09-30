@@ -12,12 +12,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "pokemon")
+@Table(name = "pokemon_jpa")
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Pokemon {
+public class PokemonJPA {
     @Id
     @GeneratedValue
     private Integer id;
@@ -32,4 +32,15 @@ public class Pokemon {
     @JsonAlias({"spDefense", "spDef"})
     private Integer specialDefense;
     private Integer speed;
+
+    public PokemonJPA(Pokemon pokemon) {
+        this.nationalNumber = pokemon.getNationalNumber();
+        this.name = pokemon.getName();
+        this.hp = pokemon.getHp();
+        this.attack = pokemon.getAttack();
+        this.defense = pokemon.getDefense();
+        this.specialAttack = pokemon.getSpecialAttack();
+        this.specialDefense = pokemon.getSpecialDefense();
+        this.speed = pokemon.getSpeed();
+    }
 }

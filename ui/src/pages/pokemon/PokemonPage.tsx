@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { useParams, useResolvedPath, resolvePath } from 'react-router';
-import Pokemon from '../../Pokemon';
 
 function fetchPokemon(name: string) {
     fetch("http://localhost:8080/api/v1/pokemon/" + name)

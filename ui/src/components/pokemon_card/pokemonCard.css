@@ -1,13 +1,17 @@
 .pokemon-card-wrapper {
     height: 256px;
     width: 184px;
-    transform: 
-        perspective(5000px)
-        rotateX(20deg)
-        rotateY(20deg);
     display: flex;
     justify-content: center;
     align-items: center;
+    transform-style: preserve-3d;
+    transform-origin: center center;
+    /* transform: matrix3d(
+        1, 0, 0, 0,
+        0, 1, 0, 0,
+        0, 0, 1, 0,
+        0, 0, 19, 1
+    ); */
 }
 
 .pokemon-card {

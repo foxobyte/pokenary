@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { useParams } from 'react-router';
-import Pokemon from '../../Pokemon';
 import PokemonCard from '../../components/pokemon_card/PokemonCard';
 import './pokedexPage.css';
+import Pokemon from '../../types/PokemonType';
 
 interface PokedexProps {
-    
+
 }
 
 interface PokedexState {
@@ -15,57 +15,28 @@ interface PokedexState {
     error: string
 }
 
-export default class PokedexPage extends Component<PokedexProps, PokedexState> {
-    constructor(props: PokedexProps) {
-        super(props);
+const PokedexPage = (props: PokedexProps) => {
+    let [pokemon, setPokemon] = useState<Pokemon[]>([])
 
-        this.state = {
-            search: "",
-            pokemon: [], // immute
-            isLoaded: false,
-            error: ""
-        }
-    }
+    useEffect(() => {
+        fetch("http://localhost:8080/api/v1/pokemon")
+            .then(response => response.json())
+            .then(result => setPokemon(result))
+    }, [])
 
-    componentDidMount(): void {
-        this.fetchPokemon()
-    }
+    useEffect(() => {
+        console.log("updated")
+    })
 
-    fetchPokemon() {
-        fetch(`${process.env.REACT_APP_POKEMON_ENDPOINT}`)
-            .then(result => result.json())
-            .then(result => {
-                this.setState({
-                    isLoaded: true,
-                    pokemon: result
-                })
-            }, (error) => {
-                this.setState({
-                    isLoaded: true,
-                    error: error
-                })
-            });
-    }
-
-    render() {
-        return(
-            <div id='pokedex-page'>
-                {this.state.pokemon.map(pokemon => {
-                    return <PokemonCard 
-                        key={pokemon.id}
-                        id={pokemon.id} 
-                        name={pokemon.name}
-                        nationalNumber={pokemon.nationalNumber}
-                        type={pokemon.type}
-                        attack={pokemon.attack}
-                        defense={pokemon.defense}
-                        hp={pokemon.hp}
-                        spAttack={pokemon.spAttack}
-                        spDefense={pokemon.spDefense}
-                        speed={pokemon.speed}
-                    />
-                })}
-            </div>
-        )
-    }
+    return(
+        <div id='pokedex-page'>
+            {pokemon.map(pokemon => 
+                <div>
+                    <img src={"https://img.pokemondb.net/sprites/black-white/anim/back-normal/" + pokemon.name.toLowerCase() + ".gif"}/>
+                </div>)
+            }
+        </div>
+    )
 }
+
+export default PokedexPage;

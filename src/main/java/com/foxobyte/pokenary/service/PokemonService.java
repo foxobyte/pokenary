@@ -38,6 +38,14 @@ public class PokemonService {
         return pokemonRepository.findById(id).get();
     }
 
+    public Pokemon getStarterPokemon(Integer id) throws Exception {
+        Optional<Pokemon> pokemon = pokemonRepository.findById(id);
+
+        if (!pokemon.isPresent()) throw new NotifiableNotFoundException("Pokemon with id " + id + " not found");
+
+        return pokemonRepository.findById(id).get();
+    }
+
     public List<Pokemon> getAllPokemon() throws Exception {
         List<Pokemon> pokemon = pokemonRepository.findAll();
 
@@ -47,6 +55,7 @@ public class PokemonService {
     public Pokemon getRandomPokemon() {
         Random rand = new Random();
         Integer randomId = rand.nextInt(1000);
+
         return pokemonRepository.findById(randomId).get();
     }
 
@@ -61,6 +70,7 @@ public class PokemonService {
 
         watch.stop();
         System.out.println("Total Time: " + watch.getTotalTimeMillis());
+
         return pokemonRepository.findAll();
     }
 
@@ -77,6 +87,7 @@ public class PokemonService {
 
         watch.stop();
         System.out.println("Total Time: " + watch.getTotalTimeMillis());
+
         return pokemonRepository.findAll();
     }
 

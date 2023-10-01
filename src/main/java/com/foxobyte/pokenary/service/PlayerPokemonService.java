@@ -16,11 +16,13 @@ public class PlayerPokemonService {
     @Autowired
     WildPokemonService wildPokemonService;
     @Autowired
+    PokemonService pokemonService;
+    @Autowired
     PlayerPokemonRepository playerPokemonRepository;
 
     public PlayerPokemon createPlayerPokemon(Long playerId, Integer wildPokemonId) throws Exception {
-        WildPokemon wildPokemon = wildPokemonService.getWildPokemon(wildPokemonId);
         Player player = playerService.getPlayer(playerId);
+        WildPokemon wildPokemon = wildPokemonService.getWildPokemon(wildPokemonId);
         PlayerPokemon playerPokemon = buildPlayerPokemon(player, wildPokemon);
 
         return playerPokemon;
@@ -32,12 +34,25 @@ public class PlayerPokemonService {
         return playerPokemon;
     }
 
-    public PlayerPokemon chooseStarterPokemon() {
+    public PlayerPokemon chooseStarterPokemon(Long playerId, Integer pokemonId) throws Exception {
+        Player player = playerService.getPlayer(playerId);
+        Pokemon pokemon = pokemonService.getStarterPokemon(pokemonId);
+        PlayerPokemon playerPokemon = buildPlayerPokemon(player, pokemon);
 
+        return playerPokemon;
     }
 
     public PlayerPokemon updatePlayerPokemon(PlayerPokemon playerPokemon) {
         return playerPokemonRepository.save(playerPokemon);
+    }
+
+    private PlayerPokemon buildPlayerPokemon(Player player, Pokemon pokemon) {
+        PlayerPokemon playerPokemon = new PlayerPokemon();
+        playerPokemon.setPlayer(player);
+        playerPokemon.setPokemon(pokemon);
+        playerPokemon.setLevel(5);
+
+        return playerPokemon;
     }
 
     private PlayerPokemon buildPlayerPokemon(Player player, WildPokemon wildPokemon) {

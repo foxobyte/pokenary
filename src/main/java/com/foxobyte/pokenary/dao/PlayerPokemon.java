@@ -19,5 +19,7 @@ public class PlayerPokemon {
     private Long id;
     @OneToOne
     private Pokemon pokemon;
+    @OneToOne
+    private Player player;
     private Integer level;
 }

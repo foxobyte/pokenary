@@ -1,4 +1,7 @@
 package com.foxobyte.pokenary.repo;
 
-public interface PlayerPokemonRepository {
+import com.foxobyte.pokenary.dao.PlayerPokemon;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface PlayerPokemonRepository extends JpaRepository<PlayerPokemon, Long>{
 }

@@ -26,29 +26,28 @@ import java.util.stream.IntStream;
 @Service
 public class PokemonService {
     @Autowired
-    PokemonRepository repository;
+    PokemonRepository pokemonRepository;
     @Autowired
     PokemonJPARepository jpaRepository;
 
     public Pokemon getPokemon(Integer id) throws Exception {
-        Optional<Pokemon> pokemon = repository.findById(id);
+        Optional<Pokemon> pokemon = pokemonRepository.findById(id);
 
         if (!pokemon.isPresent()) throw new NotifiableNotFoundException("Pokemon with id " + id + " not found");
 
-//        pokemon.get().setType();
-        return repository.findById(id).get();
+        return pokemonRepository.findById(id).get();
     }
 
-//    public Pokemon[] getAllPokemon() throws Exception {
-//        Pokemon[] pokemon = Pokemon.values();
-//
-//        return pokemon;
-//    }
+    public List<Pokemon> getAllPokemon() throws Exception {
+        List<Pokemon> pokemon = pokemonRepository.findAll();
+
+        return pokemon;
+    }
 
     public Pokemon getRandomPokemon() {
         Random rand = new Random();
         Integer randomId = rand.nextInt(1000);
-        return repository.findById(randomId).get();
+        return pokemonRepository.findById(randomId).get();
     }
 
     public List<Pokemon> addPokemon(List<Pokemon> pokemon) {
@@ -57,12 +56,12 @@ public class PokemonService {
 
         pokemon.stream().forEach(e -> {
             e.setId(0);
-            repository.save(e);
+            pokemonRepository.save(e);
         });
 
         watch.stop();
         System.out.println("Total Time: " + watch.getTotalTimeMillis());
-        return repository.findAll();
+        return pokemonRepository.findAll();
     }
 
     public List<Pokemon> addJPAPokemon(List<Pokemon> pokemon) {
@@ -78,7 +77,7 @@ public class PokemonService {
 
         watch.stop();
         System.out.println("Total Time: " + watch.getTotalTimeMillis());
-        return repository.findAll();
+        return pokemonRepository.findAll();
     }
 
     public void timeAddPokemon(List<Pokemon> pokemon) {
@@ -90,14 +89,14 @@ public class PokemonService {
             watch.start();
 
             for (int j = 0; j < i; j++) {
-                repository.save(pokemon.get(j));
+                pokemonRepository.save(pokemon.get(j));
             }
 
             watch.stop();
             Long result = watch.getTotalTimeMillis();
             results.add(result);
             System.out.println("Add " + i + " pokemon ran in " + result);
-            repository.deleteAll();
+            pokemonRepository.deleteAll();
         }
 
         List<PokemonJPA> pokemonJpa = pokemon.stream().map(PokemonJPA::new).collect(Collectors.toList());

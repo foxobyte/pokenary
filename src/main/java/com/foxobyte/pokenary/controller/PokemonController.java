@@ -19,14 +19,14 @@ public class PokemonController {
     @Autowired
     PokemonService service;
 
-//    @GetMapping
-//    public ResponseEntity<Pokemon[]> getAllPokemon() {
-//        try {
-//            return new ResponseEntity<>(service.getAllPokemon(), HttpStatus.OK);
-//        } catch (Exception e) {
-//            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
+    @GetMapping
+    public ResponseEntity<List<Pokemon>> getAllPokemon() {
+        try {
+            return new ResponseEntity<>(service.getAllPokemon(), HttpStatus.OK);
+        } catch (Exception e) {
+            throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Pokemon> getPokemon(@PathVariable("id") Integer id) {

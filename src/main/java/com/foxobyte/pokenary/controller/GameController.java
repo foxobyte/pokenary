@@ -29,11 +29,11 @@ public class GameController {
 
     @PostMapping("/join")
     public ResponseEntity<Game> joinGame(
-            @RequestParam("game") Game game,
-            @RequestParam("player") Player player
+            @RequestParam("gameId") Long gameId,
+            @RequestParam("playerPokemonId") Long playerPokemonId
     ) {
         try {
-            return new ResponseEntity<>(service.joinGame(game, player), HttpStatus.OK);
+            return new ResponseEntity<>(service.joinGame(gameId, playerPokemonId), HttpStatus.OK);
         } catch (GameHasStartedException e) {
             throw new ResponseStatusException(HttpStatus.I_AM_A_TEAPOT, "Game has already started");
         } catch (Exception e) {

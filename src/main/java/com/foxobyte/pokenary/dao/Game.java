@@ -20,13 +20,13 @@ public class Game {
     @GeneratedValue
     private Long id;
     @OneToOne
-    private Pokemon wildPokemon;
-//    @ManyToOne
-//    private List<Player> players;
+    private WildPokemon wildPokemon;
+    @ManyToOne(targetEntity = PlayerPokemon.class)
+    private List<PlayerPokemon> playerPokemon;
     private Boolean hasStarted = false;
 
-//    public void addPlayer(Player player) {
-//        if (players.isEmpty()) players = new ArrayList<>();
-//        players.add(player);
-//    }
+    public void addPlayer(PlayerPokemon playerPokemon) {
+        if (this.playerPokemon == null) this.playerPokemon = new ArrayList<>();
+        this.playerPokemon.add(playerPokemon);
+    }
 }

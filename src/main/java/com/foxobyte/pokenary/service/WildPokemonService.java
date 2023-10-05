@@ -1,36 +1,71 @@
 package com.foxobyte.pokenary.service;
 
-import com.foxobyte.pokenary.dao.Pokemon;
-import com.foxobyte.pokenary.dao.WildPokemon;
+import com.foxobyte.pokenary.constants.Nature;
+import com.foxobyte.pokenary.dao.pokemon.BasePokemon;
+import com.foxobyte.pokenary.dao.pokemon.IndividualValues;
+import com.foxobyte.pokenary.dao.Move;
+import com.foxobyte.pokenary.dao.pokemon.WildPokemon;
+import com.foxobyte.pokenary.repo.IndividualValuesRepository;
 import com.foxobyte.pokenary.repo.WildPokemonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static com.foxobyte.pokenary.util.PokemonCalculator.*;
 
 @Service
 public class WildPokemonService {
     @Autowired
     WildPokemonRepository wildPokemonRepository;
     @Autowired
-    PokemonService pokemonService;
+    IndividualValuesRepository individualValuesRepository;
+    @Autowired
+    BasePokemonService basePokemonService;
+    @Autowired
+    MoveService moveService;
+    private Random random = new Random();
 
     public WildPokemon createWildPokemon(Integer level) {
-        WildPokemon wildPokemon = buildWildPokemon(pokemonService.getRandomPokemon(), level);
-        return wildPokemon;
+        IndividualValues individualValues = generateIndividualValues();
+        individualValuesRepository.save(individualValues);
+        Nature nature = getRandomNature();
+        WildPokemon wildPokemon = buildWildPokemon(basePokemonService.getRandomBasePokemon(), level, individualValues, nature);
+
+        List<Integer> availableMoves = new ArrayList<>(wildPokemon.getBasePokemon().getMovesLearnedAtLevel().entrySet().stream().filter(e -> e.getValue() <= wildPokemon.getLevel()).collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue)).keySet());
+        Set<Move> moves = new HashSet<>();
+
+        for (int i = 0; i < 4; i++) {
+            Integer availableMove = availableMoves.get(random.nextInt(availableMoves.size()));
+            moves.add(moveService.getMove(availableMove));
+            availableMoves.remove(availableMove);
+        }
+        wildPokemon.setMoves(moves);
+
+        return wildPokemonRepository.save(wildPokemon);
     }
 
     public WildPokemon createWildPokemon(Integer id, Integer level) throws Exception {
-        WildPokemon wildPokemon = buildWildPokemon(pokemonService.getPokemon(id), level);
+        IndividualValues individualValues = generateIndividualValues();
+        individualValuesRepository.save(individualValues);
+        Nature nature = getRandomNature();
+        WildPokemon wildPokemon = buildWildPokemon(basePokemonService.getRandomBasePokemon(), level, individualValues, nature);
+
         return wildPokemon;
     }
 
-    public WildPokemon getWildPokemon(Integer id) {
+    public WildPokemon getWildPokemon(Long id) {
         return wildPokemonRepository.findById(id).get();
     }
 
-    private WildPokemon buildWildPokemon(Pokemon pokemon, Integer level) {
+    private WildPokemon buildWildPokemon(BasePokemon pokemon, Integer level, IndividualValues individualValues, Nature nature) {
         WildPokemon wildPokemon = new WildPokemon();
-        wildPokemon.setPokemon(pokemon);
+        wildPokemon.setBasePokemon(pokemon);
         wildPokemon.setLevel(level);
+        wildPokemon.setIndividualValues(individualValues);
+        wildPokemon.setNature(nature);
+        calculatePokemonStats(wildPokemon);
 
         return wildPokemon;
     }

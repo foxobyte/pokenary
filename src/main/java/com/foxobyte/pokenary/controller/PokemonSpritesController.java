@@ -1,6 +1,6 @@
 package com.foxobyte.pokenary.controller;
 
-import com.foxobyte.pokenary.dao.PokemonSprite;
+import com.foxobyte.pokenary.dao.misc.PokemonSprite;
 import com.foxobyte.pokenary.service.PokemonSpriteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -13,7 +13,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/api/v1/sprites")
+@RequestMapping("/api/v1/sprite")
 public class PokemonSpritesController {
     @Autowired
     PokemonSpriteService service;

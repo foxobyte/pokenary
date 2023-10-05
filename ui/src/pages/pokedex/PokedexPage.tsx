@@ -10,16 +10,16 @@ interface PokedexProps {
 
 interface PokedexState {
     search: string,
-    pokemon: Array<Pokemon>,
+    basePokemon: Array<Pokemon>,
     isLoaded: boolean,
     error: string
 }
 
 const PokedexPage = (props: PokedexProps) => {
-    let [pokemon, setPokemon] = useState<Pokemon[]>([])
+    let [basePokemon, setPokemon] = useState<Pokemon[]>([])
 
     useEffect(() => {
-        fetch("http://localhost:8080/api/v1/pokemon")
+        fetch("http://localhost:8080/api/v1/basePokemon")
             .then(response => response.json())
             .then(result => setPokemon(result))
     }, [])
@@ -30,9 +30,9 @@ const PokedexPage = (props: PokedexProps) => {
 
     return(
         <div id='pokedex-page'>
-            {pokemon.map(pokemon => 
+            {basePokemon.map(basePokemon =>
                 <div>
-                    <img src={"https://img.pokemondb.net/sprites/black-white/anim/back-normal/" + pokemon.name.toLowerCase() + ".gif"}/>
+                    <img src={"https://img.pokemondb.net/sprites/black-white/anim/back-normal/" + basePokemon.name.toLowerCase() + ".gif"}/>
                 </div>)
             }
         </div>

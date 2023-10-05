@@ -14,10 +14,10 @@ create table if not exists pokemon (
 	primary key (id)
 ) engine=InnoDB;
 
-create table if not exists player_pokemon (
-	id bigint not null,
-	pokemon_id integer,
-	level tinyint,
-	CHECK (level >= 1 and level <= 100),
-	primary key (id)
-) engine=InnoDB
+--create table if not exists player_pokemon (
+--	id bigint not null,
+--	pokemon_id integer,
+--	level tinyint,
+--	CHECK (level >= 1 and level <= 100),
+--	primary key (id)
+--) engine=InnoDB

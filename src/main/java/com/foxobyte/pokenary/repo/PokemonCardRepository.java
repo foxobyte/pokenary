@@ -1,6 +1,6 @@
 package com.foxobyte.pokenary.repo;
 
-import com.foxobyte.pokenary.dao.PokemonCard;
+import com.foxobyte.pokenary.dao.misc.PokemonCard;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

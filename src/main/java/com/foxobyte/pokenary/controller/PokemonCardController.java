@@ -1,8 +1,7 @@
 package com.foxobyte.pokenary.controller;
 
-import com.foxobyte.pokenary.dao.PokemonCard;
+import com.foxobyte.pokenary.dao.misc.PokemonCard;
 import com.foxobyte.pokenary.service.PokemonCardService;
-import com.sun.net.httpserver.Headers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -12,10 +11,9 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.io.IOException;
-import java.util.List;
 
 @RestController
-@RequestMapping("/api/v1/cards")
+@RequestMapping("/api/v1/card")
 public class PokemonCardController {
     @Autowired
     PokemonCardService service;

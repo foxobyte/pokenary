@@ -88,20 +88,20 @@ const PokemonCard = (props: PokemonCardType) => {
 
     return(
         <div 
-            className='pokemon-card-wrapper' 
+            className='basePokemon-card-wrapper'
             ref={card}
             onMouseMove={handleMouseMove} 
             onMouseLeave={handleMouseLeave}
         >
-            <div className='pokemon-card'>
+            <div className='basePokemon-card'>
                 <img 
-                    className='pokemon-card-image' 
-                    src={`http://localhost:8080/api/v1/cards/pokemon/1`} 
+                    className='basePokemon-card-image'
+                    src={`http://localhost:8080/api/v1/cards/basePokemon/1`}
                     // alt={props.imageName + " card"}
                 />
             </div>
             <div 
-                className='pokemon-card-overlay'
+                className='basePokemon-card-overlay'
                 ref={overlay}
             >
                 {props.pokemonId}

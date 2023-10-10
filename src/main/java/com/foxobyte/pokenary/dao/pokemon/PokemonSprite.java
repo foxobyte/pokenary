@@ -1,4 +1,4 @@
-package com.foxobyte.pokenary.dao.misc;
+package com.foxobyte.pokenary.dao.pokemon;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

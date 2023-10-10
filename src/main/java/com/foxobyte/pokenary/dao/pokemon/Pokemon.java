@@ -1,7 +1,9 @@
 package com.foxobyte.pokenary.dao.pokemon;
 
 import com.fasterxml.jackson.annotation.*;
+import com.foxobyte.pokenary.constants.Generation;
 import com.foxobyte.pokenary.constants.Type;
+import com.foxobyte.pokenary.dao.item.TechnicalMachine;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,13 +18,14 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 //@JsonDeserialize(using = CustomerJsonDeserializer.class)
-public class BasePokemon {
+public class Pokemon {
     @Id
     @GeneratedValue
     @Column(name = "base_pokemon_id")
-    private Integer basePokemonId;
+    private Integer pokemonId;
     @JsonAlias({"national_number"})
     private Integer nationalNumber;
+    private Generation generation;
     private String name;
     @ElementCollection
     private Set<Type> type;
@@ -41,17 +44,19 @@ public class BasePokemon {
     @ElementCollection
     @JsonAlias({"moves_learned_at_level"})
     private Map<Integer, Integer> movesLearnedAtLevel;
+//    @ElementCollection
+//    private Set<TechnicalMachine> movesLearnedByTM;
 
-    public BasePokemon(BasePokemon basePokemon) {
-        this.basePokemonId = basePokemon.getBasePokemonId();
-        this.nationalNumber = basePokemon.getNationalNumber();
-        this.name = basePokemon.getName();
-        this.type = basePokemon.getType();
-        this.hp = basePokemon.getHp();
-        this.attack = basePokemon.getAttack();
-        this.defense = basePokemon.getDefense();
-        this.specialAttack = basePokemon.getSpecialAttack();
-        this.specialDefense = basePokemon.getSpecialDefense();
-        this.speed = basePokemon.getSpeed();
+    public Pokemon(Pokemon pokemon) {
+        this.pokemonId = pokemon.getPokemonId();
+        this.nationalNumber = pokemon.getNationalNumber();
+        this.name = pokemon.getName();
+        this.type = pokemon.getType();
+        this.hp = pokemon.getHp();
+        this.attack = pokemon.getAttack();
+        this.defense = pokemon.getDefense();
+        this.specialAttack = pokemon.getSpecialAttack();
+        this.specialDefense = pokemon.getSpecialDefense();
+        this.speed = pokemon.getSpeed();
     }
 }

@@ -24,7 +24,7 @@ public class WildPokemon implements IPokemon {
     private Long id;
     @OneToOne
     @JsonIgnore
-    private BasePokemon basePokemon;
+    private Pokemon pokemon;
     @OneToOne
     @JsonIgnore
     private Game game;
@@ -42,6 +42,10 @@ public class WildPokemon implements IPokemon {
     private Integer specialAttack = 0;
     private Integer specialDefense = 0;
     private Integer speed = 0;
+
+    public void setPokemon() {
+
+    }
 
     @Override
     @JsonIgnore

@@ -1,5 +1,6 @@
 package com.foxobyte.pokenary.dao;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.foxobyte.pokenary.constants.MoveCategory;
 import com.foxobyte.pokenary.constants.Type;
 import lombok.AllArgsConstructor;
@@ -32,6 +33,8 @@ public class Move {
     private Integer accuracy;
     @Column(name = "pp")
     private Integer pp;
+    @Column(name = "effect_description")
+    private String effectDescription;
     @Column(name = "probability")
     private Float probability;
     @Column(name = "is_high_crit")

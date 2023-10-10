@@ -1,5 +1,11 @@
 package com.foxobyte.pokenary.constants;
 
 public enum ItemCategory {
-    EVOLUTION_STONE;
+    POKEBALL,
+    MACHINE,
+    HELD_ITEM,
+    BERRY,
+    BATTLE_ITEM,
+    EVOLUTION_STONE,
+    MEDICINE;
 }

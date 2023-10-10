@@ -1,6 +1,6 @@
 package com.foxobyte.pokenary.service;
 
-import com.foxobyte.pokenary.dao.misc.PokemonSprite;
+import com.foxobyte.pokenary.dao.pokemon.PokemonSprite;
 import com.foxobyte.pokenary.repo.PokemonSpriteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

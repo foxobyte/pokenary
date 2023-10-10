@@ -1,8 +1,8 @@
 package com.foxobyte.pokenary.service;
 
 import com.foxobyte.pokenary.dao.*;
-import com.foxobyte.pokenary.dao.pokemon.BasePokemon;
 import com.foxobyte.pokenary.dao.pokemon.PlayerPokemon;
+import com.foxobyte.pokenary.dao.pokemon.Pokemon;
 import com.foxobyte.pokenary.dao.pokemon.WildPokemon;
 import com.foxobyte.pokenary.repo.IndividualValuesRepository;
 import com.foxobyte.pokenary.repo.PlayerPokemonRepository;
@@ -17,10 +17,10 @@ public class PlayerPokemonService {
     PlayerService playerService;
     @Autowired
     WildPokemonService wildPokemonService;
-    @Autowired
-    BasePokemonService basePokemonService;
-    @Autowired
-    MoveService moveService;
+//    @Autowired
+//    PokemonService pokemonService;
+//    @Autowired
+//    MoveService moveService;
     @Autowired
     PlayerPokemonRepository playerPokemonRepository;
     @Autowired
@@ -48,8 +48,8 @@ public class PlayerPokemonService {
 
 //    public PlayerPokemon chooseStarterPokemon(Long playerId, Integer pokemonId) throws Exception {
 //        Player player = playerService.getPlayer(playerId);
-//        BasePokemon basePokemon = basePokemonService.getStarterPokemon(pokemonId);
-//        PlayerPokemon playerPokemon = buildPlayerPokemon(player, basePokemon);
+//        Pokemon pokemon = pokemonService.getStarterPokemon(pokemonId);
+//        PlayerPokemon playerPokemon = buildPlayerPokemon(player, pokemon);
 //
 //        return playerPokemon;
 //    }
@@ -60,15 +60,15 @@ public class PlayerPokemonService {
 
     public PlayerPokemon learnMove(Long playerPokemonId, Integer moveId) {
         PlayerPokemon playerPokemon = playerPokemonRepository.findById(playerPokemonId).get();
-        Move move = moveService.getMove(moveId);
+//        Move move = moveService.getMove(moveId);
 //        playerPokemon.addMove(move);
         return playerPokemonRepository.save(playerPokemon);
     }
 
-    private PlayerPokemon buildPlayerPokemon(Player player, BasePokemon basePokemon) {
+    private PlayerPokemon buildPlayerPokemon(Player player, Pokemon pokemon) {
         PlayerPokemon playerPokemon = new PlayerPokemon();
         playerPokemon.setPlayer(player);
-        playerPokemon.setBasePokemon(basePokemon);
+        playerPokemon.setPokemon(pokemon);
         playerPokemon.setLevel(5);
 
         return playerPokemon;
@@ -76,7 +76,7 @@ public class PlayerPokemonService {
 
     private PlayerPokemon buildPlayerPokemon(Player player, WildPokemon wildPokemon) {
         PlayerPokemon playerPokemon = new PlayerPokemon();
-        playerPokemon.setBasePokemon(wildPokemon.getBasePokemon());
+        playerPokemon.setPokemon(wildPokemon.getPokemon());
         playerPokemon.setLevel(wildPokemon.getLevel());
         playerPokemon.setPlayer(player);
         calculatePokemonStats(playerPokemon);

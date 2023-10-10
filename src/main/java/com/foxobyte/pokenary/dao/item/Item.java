@@ -1,18 +1,29 @@
 package com.foxobyte.pokenary.dao.item;
 
 import com.foxobyte.pokenary.constants.ItemCategory;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Table(name = "items")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Item {
     @Id
     @GeneratedValue
-    private Integer itemId;
-    private ItemCategory itemCategory;
+    private Integer id;
+    private ItemCategory category;
+    private String name;
 
-    public Item(ItemCategory itemCategory) {
-        this.itemCategory = itemCategory;
+    public Item(ItemCategory category, String name) {
+        this.category = category;
+        this.name = name;
     }
 }

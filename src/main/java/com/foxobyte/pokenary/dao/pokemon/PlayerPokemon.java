@@ -3,7 +3,7 @@ package com.foxobyte.pokenary.dao.pokemon;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.foxobyte.pokenary.constants.Nature;
 import com.foxobyte.pokenary.dao.Player;
-import com.foxobyte.pokenary.dao.item.Item;
+//import com.foxobyte.pokenary.dao.item.Item;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,7 +20,7 @@ public class PlayerPokemon implements IPokemon {
     @GeneratedValue
     private Long id;
     @OneToOne
-    private BasePokemon basePokemon;
+    private Pokemon pokemon;
     @OneToOne
     private Player player;
     private Integer level;
@@ -30,7 +30,8 @@ public class PlayerPokemon implements IPokemon {
     private IndividualValues individualValues;
     @OneToOne
     private EffortValues effortValues;
-    private Item heldItem;
+//    @OneToOne
+//    private Item heldItem;
 //    @ElementCollection
 //    private Map<Status, Integer> status;
     private Nature nature;
@@ -50,6 +51,10 @@ public class PlayerPokemon implements IPokemon {
 //        if (this.status == null) this.status = new HashMap<>();
 //        this.status.put(status, duration);
 //    }
+
+    public void setPokemon() {
+
+    }
 
     @Override
     @JsonIgnore

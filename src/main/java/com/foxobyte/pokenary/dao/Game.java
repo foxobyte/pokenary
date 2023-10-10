@@ -1,5 +1,6 @@
 package com.foxobyte.pokenary.dao;
 
+import com.foxobyte.pokenary.constants.Generation;
 import com.foxobyte.pokenary.dao.pokemon.PlayerPokemon;
 import com.foxobyte.pokenary.dao.pokemon.WildPokemon;
 import lombok.AllArgsConstructor;
@@ -26,6 +27,7 @@ public class Game {
     private WildPokemon wildPokemon;
     @ElementCollection
     private Set<PlayerPokemon> playerPokemon;
+    private Generation generation;
     private Boolean hasStarted = false;
     private String message;
     private PriorityQueue<Move> queue;

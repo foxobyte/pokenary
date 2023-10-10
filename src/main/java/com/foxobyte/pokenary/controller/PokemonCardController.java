@@ -1,6 +1,6 @@
 package com.foxobyte.pokenary.controller;
 
-import com.foxobyte.pokenary.dao.misc.PokemonCard;
+import com.foxobyte.pokenary.dao.pokemon.PokemonCard;
 import com.foxobyte.pokenary.service.PokemonCardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;

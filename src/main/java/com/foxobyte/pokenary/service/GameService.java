@@ -1,5 +1,6 @@
 package com.foxobyte.pokenary.service;
 
+import com.foxobyte.pokenary.constants.Generation;
 import com.foxobyte.pokenary.dao.Game;
 import com.foxobyte.pokenary.dao.Move;
 import com.foxobyte.pokenary.dao.pokemon.PlayerPokemon;
@@ -23,14 +24,15 @@ public class GameService {
     WildPokemonService wildPokemonService;
     @Autowired
     PlayerPokemonService playerPokemonService;
-    @Autowired
-    MoveService moveService;
+//    @Autowired
+//    MoveService moveService;
     private Random random = new Random();
 
-    public Game createGame() {
+    public Game createGame(Generation generation) {
         Game game = new Game();
         game.setWildPokemon(wildPokemonService.createWildPokemon(random.nextInt(100)));
-//        calculatePokemonStats(game.getWildPokemon());
+        game.setGeneration(generation);
+        calculatePokemonStats(game.getWildPokemon());
 
         return gameRepository.save(game);
     }
@@ -91,9 +93,8 @@ public class GameService {
         if (optionalPlayerPokemon.isEmpty()) throw new PokemonIsNotInGameException("This pokemon is not in this game");
 
         PlayerPokemon playerPokemon = optionalPlayerPokemon.get();
-        Move move = moveService.getMove(moveId);
-        move.getCategory().move(playerPokemon, game.getWildPokemon(), move);
-
+//        Move move = moveService.getMove(moveId);
+//        move.getCategory().move(playerPokemon, game.getWildPokemon(), move);
 
         // Critical hit
         game.setMessage("THAT WAS A CRITICAL!! OMG!");

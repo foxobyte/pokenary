@@ -7,7 +7,7 @@ interface PokemonSpriteProps {
 
 const PokemonSprite = (props: PokemonSpriteProps) => {
     return(
-        <div className='basePokemon-sprite' style={{
+        <div className='pokemon-sprite' style={{
             backgroundImage: `url(${props.image})`
         }}>
         

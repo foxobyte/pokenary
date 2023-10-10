@@ -3,7 +3,8 @@ package com.foxobyte.pokenary.dao.pokemon;
 import com.foxobyte.pokenary.constants.Nature;
 
 public interface IPokemon {
-    BasePokemon getBasePokemon();
+    Pokemon getPokemon();
+    void setPokemon();
     Integer getLevel();
     void setHp(Integer hp);
     Integer getHp();

@@ -1,6 +1,6 @@
 package com.foxobyte.pokenary.service;
 
-import com.foxobyte.pokenary.dao.misc.PokemonCard;
+import com.foxobyte.pokenary.dao.pokemon.PokemonCard;
 import com.foxobyte.pokenary.repo.PokemonCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -1,5 +1,6 @@
 package com.foxobyte.pokenary.controller;
 
+import com.foxobyte.pokenary.constants.Generation;
 import com.foxobyte.pokenary.dao.Game;
 import com.foxobyte.pokenary.exception.GameHasStartedException;
 import com.foxobyte.pokenary.exception.AlreadyInGameException;
@@ -18,10 +19,10 @@ public class GameController {
 
     @PostMapping("/create")
     public ResponseEntity<Game> createGame(
-//            @RequestHeader String key
+        @RequestParam("generation") Generation generation
     ) {
         try {
-            return new ResponseEntity<>(service.createGame(), HttpStatus.OK);
+            return new ResponseEntity<>(service.createGame(generation), HttpStatus.OK);
         } catch (Exception e) {
             System.out.println(e.getStackTrace());
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);

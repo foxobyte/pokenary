@@ -8,7 +8,7 @@ import PokemonCard from '../../components/pokemon_card/PokemonCard';
 import PokemonCardType from '../../types/PokemonCardType';
 
 const Home = () => {
-    let basePokemon: Array<JSX.Element> = [
+    let pokemon: Array<JSX.Element> = [
         <PokemonCard pokemonId={1}/>,
         <PokemonCard pokemonId={2}/>,
         <PokemonCard pokemonId={3}/>,
@@ -39,7 +39,7 @@ const Home = () => {
             </nav>
             <div id="home-page-content">
                 the home page
-                <Carousel name="cards" items={basePokemon} />
+                <Carousel name="cards" items={pokemon} />
             </div>
         </div>
     )

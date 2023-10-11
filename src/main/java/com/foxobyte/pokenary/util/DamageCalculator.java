@@ -33,8 +33,8 @@ public class DamageCalculator {
     public static Integer calculateDamageGeneration1(Integer level, Integer critical, Integer attack, Integer defense, Integer power, Float stab, Float type1, Float type2, Float random) {
         Float A = (float) attack;
         Float D = (float) defense;
-        // ToDo: Floor values
-        Float damage = ((((((2 * level * critical) / 5) + 2) * power * (A / D)) / 50) + 2) * stab * type1 * type2;
+        // ToDo: Verify Equation
+        Float damage = ((float) Math.floor(((((float) (2 * level * critical) / 5) + 2) * power * (A / D)) / 50) + 2) * stab * type1 * type2;
 
         if (damage.intValue() == 1) random = 1f;
         damage *= random;

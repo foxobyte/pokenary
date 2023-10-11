@@ -14,7 +14,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.foxobyte.pokenary.util.PokemonRNG.*;
-import static com.foxobyte.pokenary.util.PokemonCalculator.*;
+import static com.foxobyte.pokenary.util.StatsCalculator.*;
 
 @Service
 public class WildPokemonService {
@@ -66,7 +66,7 @@ public class WildPokemonService {
         wildPokemon.setLevel(level);
         wildPokemon.setIndividualValues(individualValues);
         wildPokemon.setNature(nature);
-        calculatePokemonStats(wildPokemon);
+//        calculatePokemonStats(wildPokemon);
 
         return wildPokemon;
     }

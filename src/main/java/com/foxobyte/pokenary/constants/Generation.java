@@ -3,8 +3,7 @@ package com.foxobyte.pokenary.constants;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.foxobyte.pokenary.dao.pokemon.IPokemon;
 
-import static com.foxobyte.pokenary.util.PokemonCalculator.calculatePokemonHpGen1And2;
-import static com.foxobyte.pokenary.util.PokemonCalculator.calculatePokemonStatGen1And2;
+import static com.foxobyte.pokenary.util.StatsCalculator.*;
 
 public enum Generation implements IGeneration {
     ONE(1) {

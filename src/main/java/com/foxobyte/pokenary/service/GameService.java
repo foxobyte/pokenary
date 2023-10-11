@@ -14,7 +14,7 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import static com.foxobyte.pokenary.util.PokemonCalculator.calculatePokemonStats;
+import static com.foxobyte.pokenary.util.StatsCalculator.*;
 
 @Service
 public class GameService {
@@ -32,7 +32,7 @@ public class GameService {
         Game game = new Game();
         game.setWildPokemon(wildPokemonService.createWildPokemon(random.nextInt(100)));
         game.setGeneration(generation);
-        calculatePokemonStats(game.getWildPokemon());
+//        calculatePokemonStats(game.getWildPokemon());
 
         return gameRepository.save(game);
     }
@@ -42,8 +42,8 @@ public class GameService {
         if (!optionalGame.isPresent()) throw new GameDoesntExistException("Game with Id: " + gameId + " does not exist");
 
         Game game = optionalGame.get();
-        game.setWildPokemon((WildPokemon) calculatePokemonStats(game.getWildPokemon()));
-        game.getPlayerPokemon().stream().map(pokemon -> (PlayerPokemon) calculatePokemonStats(pokemon)).collect(Collectors.toSet());
+//        game.setWildPokemon((WildPokemon) calculatePokemonStats(game.getWildPokemon()));
+//        game.getPlayerPokemon().stream().map(pokemon -> (PlayerPokemon) calculatePokemonStats(pokemon)).collect(Collectors.toSet());
 
         return game;
     }

@@ -9,7 +9,7 @@ import com.foxobyte.pokenary.repo.PlayerPokemonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import static com.foxobyte.pokenary.util.PokemonCalculator.calculatePokemonStats;
+import static com.foxobyte.pokenary.util.StatsCalculator.*;
 
 @Service
 public class PlayerPokemonService {
@@ -36,7 +36,7 @@ public class PlayerPokemonService {
 
     public PlayerPokemon createPlayerPokemon(PlayerPokemon playerPokemon) {
         individualValuesRepository.save(playerPokemon.getIndividualValues());
-        calculatePokemonStats(playerPokemon);
+//        calculatePokemonStats(playerPokemon);
         return playerPokemonRepository.save(playerPokemon);
     }
 
@@ -79,7 +79,7 @@ public class PlayerPokemonService {
         playerPokemon.setPokemon(wildPokemon.getPokemon());
         playerPokemon.setLevel(wildPokemon.getLevel());
         playerPokemon.setPlayer(player);
-        calculatePokemonStats(playerPokemon);
+//        calculatePokemonStats(playerPokemon);
 
         return playerPokemon;
     }

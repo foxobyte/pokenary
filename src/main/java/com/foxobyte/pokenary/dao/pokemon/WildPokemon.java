@@ -33,6 +33,7 @@ public class WildPokemon implements IPokemon {
     private Set<Move> moves;
     @OneToOne
     private IndividualValues individualValues;
+    @OneToOne
     private DeterminantValues determinantValues;
     @ElementCollection
     private Map<Status, Integer> status;

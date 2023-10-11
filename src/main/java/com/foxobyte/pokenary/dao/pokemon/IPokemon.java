@@ -8,7 +8,6 @@ public interface IPokemon {
     Integer getLevel();
     void setHp(Integer hp);
     Integer getHp();
-
     void setAttack(Integer attack);
     Integer getAttack();
     void setDefense(Integer defense);
@@ -23,4 +22,6 @@ public interface IPokemon {
     Nature getNature();
     IndividualValues getIndividualValues();
     EffortValues getEffortValues();
+    DeterminantValues getDeterminantValues();
+    StatExperience getStatExperience();
 }

@@ -59,4 +59,16 @@ public class Pokemon {
         this.specialDefense = pokemon.getSpecialDefense();
         this.speed = pokemon.getSpeed();
     }
+
+    public Pokemon(Integer nationalNumber, String name, Set<Type> type, Integer hp, Integer attack, Integer defense, Integer specialAttack, Integer specialDefense, Integer speed) {
+        this.nationalNumber = nationalNumber;
+        this.name = name;
+        this.type = type;
+        this.hp = hp;
+        this.attack = attack;
+        this.defense = defense;
+        this.specialAttack = specialAttack;
+        this.specialDefense = specialDefense;
+        this.speed = speed;
+    }
 }

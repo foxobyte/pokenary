@@ -28,8 +28,11 @@ public class PlayerPokemon implements IPokemon {
 //    private Set<Move> moves;
     @OneToOne
     private IndividualValues individualValues;
+
+    private DeterminantValues determinantValues;
     @OneToOne
     private EffortValues effortValues;
+    private StatExperience statExperience;
 //    @OneToOne
 //    private Item heldItem;
 //    @ElementCollection

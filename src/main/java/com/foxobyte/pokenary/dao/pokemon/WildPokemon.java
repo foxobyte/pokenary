@@ -33,6 +33,7 @@ public class WildPokemon implements IPokemon {
     private Set<Move> moves;
     @OneToOne
     private IndividualValues individualValues;
+    private DeterminantValues determinantValues;
     @ElementCollection
     private Map<Status, Integer> status;
     private Nature nature;
@@ -43,6 +44,19 @@ public class WildPokemon implements IPokemon {
     private Integer specialDefense = 0;
     private Integer speed = 0;
 
+    public WildPokemon(Pokemon pokemon, Integer level, DeterminantValues determinantValues) {
+        this.pokemon = pokemon;
+        this.level = level;
+        this.determinantValues = determinantValues;
+    }
+
+    public WildPokemon(Pokemon pokemon, Integer level, IndividualValues individualValues, Nature nature) {
+        this.pokemon = pokemon;
+        this.level = level;
+        this.individualValues = individualValues;
+        this.nature = nature;
+    }
+
     public void setPokemon() {
 
     }
@@ -50,6 +64,11 @@ public class WildPokemon implements IPokemon {
     @Override
     @JsonIgnore
     public EffortValues getEffortValues() {
-        return new EffortValues(0L, 1, 1, 1, 1, 1, 1);
+        return new EffortValues(0L, 0, 0, 0, 0, 0, 0);
+    }
+
+    @Override
+    public StatExperience getStatExperience() {
+        return new StatExperience(0L, 0, 0, 0, 0, 0, 0);
     }
 }

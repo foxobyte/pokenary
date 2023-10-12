@@ -1,0 +1,10 @@
+com.foxobyte.pokenary
+com.foxobyte.pokenary.constants
+com.foxobyte.pokenary.controller
+com.foxobyte.pokenary.dao
+com.foxobyte.pokenary.dao.item
+com.foxobyte.pokenary.dao.pokemon
+com.foxobyte.pokenary.exception
+com.foxobyte.pokenary.repo
+com.foxobyte.pokenary.service
+com.foxobyte.pokenary.util

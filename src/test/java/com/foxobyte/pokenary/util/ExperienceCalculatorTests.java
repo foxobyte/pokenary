@@ -3,7 +3,6 @@ package com.foxobyte.pokenary.util;
 import com.foxobyte.pokenary.constants.GrowthRate;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
 import java.util.stream.IntStream;
 
 import static com.foxobyte.pokenary.util.ExperienceCalculator.*;
@@ -12,6 +11,21 @@ import static org.assertj.core.api.AssertionsForInterfaceTypes.assertThat;
 public class ExperienceCalculatorTests {
     @Test
     public void calculateExperienceGainGeneration1To4Test() {
+
+    }
+
+    @Test
+    public void calculateExperienceGainGeneration5Test() {
+
+    }
+
+    @Test
+    public void calculateExperienceGainGeneration6Test() {
+
+    }
+
+    @Test
+    public void calculateExperienceGainGeneration7OnwardTest() {
 
     }
 

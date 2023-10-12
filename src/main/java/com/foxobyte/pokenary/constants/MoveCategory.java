@@ -3,7 +3,7 @@ package com.foxobyte.pokenary.constants;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.foxobyte.pokenary.dao.pokemon.IPokemon;
 
-import static com.foxobyte.pokenary.util.PokemonCalculator.*;
+import static com.foxobyte.pokenary.util.StatsCalculator.*;
 
 public enum MoveCategory {
     PHYSICAL("Physical") {

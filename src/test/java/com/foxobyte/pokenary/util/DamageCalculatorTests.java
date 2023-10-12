@@ -45,39 +45,39 @@ public class DamageCalculatorTests {
         });
     }
 
-//    @Test
-//    public void calculateDamageGeneration3Test() {
-//        /*
-//         * Modeled off a level 50 Balbasaur using Absorb against a level 50 Chansey all 0 DV
-//         * */
-//        List<Float> allPossibleRandomValues = IntStream.range(85, 101).mapToObj(i -> (float) i / 255).toList();
-//        allPossibleRandomValues.stream().forEach(r -> {
-//            Integer damage = calculateDamageGeneration3(50, 20, 101, 141, 1f, 1f, 1f, 1f, 1f, 1, 1, 1, 1, 1f, 1.5f, 1f, r);
-//            assertThat(damage).isBetween(10, 12);
-//        });
-//    }
-//
-//    @Test
-//    public void calculateDamageGeneration4Test() {
-//        /*
-//         * Modeled off a level 50 Balbasaur using Absorb against a level 50 Chansey all 0 DV
-//         * */
-//        List<Float> allPossibleRandomValues = IntStream.range(85, 101).mapToObj(i -> (float) i / 255).toList();
-//        allPossibleRandomValues.stream().forEach(r -> {
-//            Integer damage = calculateDamageGeneration4(50, 20, 101, 141, 1f, 1f, 1f, 1f, 1f, 1, 1f, 1f, r, 1f, 1f, 1f, 1f, 1f, 1, 1f);
-//            assertThat(damage).isBetween(10, 12);
-//        });
-//    }
-//
-//    @Test
-//    public void calculateDamageGeneration5OnwardTest() {
-//        /*
-//         * Modeled off a level 50 Balbasaur using Absorb against a level 50 Chansey all 0 DV
-//         * */
-//        List<Float> allPossibleRandomValues = IntStream.range(85, 101).mapToObj(i -> (float) i / 255).toList();
-//        allPossibleRandomValues.stream().forEach(r -> {
-//            Integer damage = calculateDamageGeneration5Onward(50, 101, 141, 20, 1f, 1f, 1f, 1, 1f, r, 1f, 1f, 1f, 1f, 1f, 1f);
-//            assertThat(damage).isBetween(10, 12);
-//        });
-//    }
+    @Test
+    public void calculateDamageGeneration3Test() {
+        /*
+         * Modeled off a level 50 Balbasaur using Absorb against a level 50 Chansey all 0 DV
+         * */
+        List<Float> allPossibleRandomValues = IntStream.range(85, 101).mapToObj(i -> (float) i / 255).toList();
+        allPossibleRandomValues.stream().forEach(r -> {
+            Integer damage = calculateDamageGeneration3(50, 20, 101, 141, 1f, 1f, 1f, 1f, 1f, 1, 1, 1, 1, 1f, 1.5f, 1f, r);
+            assertThat(damage).isBetween(10, 12);
+        });
+    }
+
+    @Test
+    public void calculateDamageGeneration4Test() {
+        /*
+         * Modeled off a level 50 Balbasaur using Absorb against a level 50 Chansey all 0 DV
+         * */
+        List<Float> allPossibleRandomValues = IntStream.range(85, 101).mapToObj(i -> (float) i / 255).toList();
+        allPossibleRandomValues.stream().forEach(r -> {
+            Integer damage = calculateDamageGeneration4(50, 20, 101, 141, 1f, 1f, 1f, 1f, 1f, 1, 1f, 1f, r, 1f, 1f, 1f, 1f, 1f, 1, 1f);
+            assertThat(damage).isBetween(10, 12);
+        });
+    }
+
+    @Test
+    public void calculateDamageGeneration5OnwardTest() {
+        /*
+         * Modeled off a level 50 Balbasaur using Absorb against a level 50 Chansey all 0 DV
+         * */
+        List<Float> allPossibleRandomValues = IntStream.range(85, 101).mapToObj(i -> (float) i / 255).toList();
+        allPossibleRandomValues.stream().forEach(r -> {
+            Integer damage = calculateDamageGeneration5Onward(50, 101, 141, 20, 1f, 1f, 1f, 1, 1f, r, 1f, 1f, 1f, 1f, 1f, 1f);
+            assertThat(damage).isBetween(10, 12);
+        });
+    }
 }

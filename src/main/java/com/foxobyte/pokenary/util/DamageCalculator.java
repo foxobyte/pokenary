@@ -28,7 +28,7 @@ public class DamageCalculator {
      *                          a random uniformly distributed integer between 217 and 255 inclusive divided by 255
      *                          If the damage before random is 1 random is 1
      *
-     * @return              the int value of the damage calculated
+     * @return              int value of the damage calculated
      * */
     public static Integer calculateDamageGeneration1(Integer level, Integer critical, Integer attack, Integer defense, Integer power, Float stab, Float type1, Float type2, Float random) {
         Float A = (float) attack;
@@ -81,7 +81,7 @@ public class DamageCalculator {
      *                          Earthquake or Magnitude
      *                          int value of 1 otherwise
      *
-     * @return              the int value of the damage calculated
+     * @return              int value of the damage calculated
      * */
     public static Integer calculateDamageGeneration2(Integer level, Integer attack, Integer defense, Integer power, Float item, Integer critical, Integer tk, Float weather, Float badge, Float stab, Float type, Integer moveMod, Float random, Integer doubleDamage) {
         Float A = (float) attack;
@@ -147,7 +147,7 @@ public class DamageCalculator {
      *                          a random uniformly distributed integer between 85 and 100 inclusive divided by 100
      *                          always 1 if Spit Up is used
      *
-     * @return              the int value of the damage calculated
+     * @return              int value of the damage calculated
      * */
     public static Integer calculateDamageGeneration3(Integer level, Integer power, Integer attack, Integer defense, Float burn, Float screen, Float targets, Float weather, Float ff, Integer stockpile, Integer critical, Integer doubleDamage, Integer charge, Float hh, Float stab, Float type, Float random) {
         Float A = (float) attack;
@@ -213,7 +213,7 @@ public class DamageCalculator {
      *                          float value of 0.5 if a normal-type move is used and the defending Pokémon is holding a Chilan Berry.
      *                          float value of 1.0 otherwise.
      *
-     * @return              the int value of the damage calculated
+     * @return              int value of the damage calculated
      * */
     public static Integer calculateDamageGeneration4(Integer level, Integer power, Integer attack, Integer defense, Float burn, Float screen, Float targets, Float weather, Float ff, Integer critical, Float item, Float first, Float random, Float stab, Float type1, Float type2, Float srf, Float eb, Integer tl, Float berry) {
         Float A = (float) attack;
@@ -259,7 +259,7 @@ public class DamageCalculator {
      * @param teraShield    float value of 0.2 ToDo: finish me
      *                          float value of 1.0 otherwise.
      *
-     * @return              the int value of the damage calculated
+     * @return              int value of the damage calculated
      * */
     public static Integer calculateDamageGeneration5Onward(Integer level, Integer attack, Integer defense, Integer power, Float targets, Float pb, Float weather, Integer glaiveRush, Float critical, Float random, Float stab, Float type, Float burn, Float other, Float zMove, Float teraShield) {
         Float A = (float) attack;

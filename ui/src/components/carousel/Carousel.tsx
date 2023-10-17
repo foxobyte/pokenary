@@ -108,7 +108,7 @@ const Carousel = (props: CarouselProps) => {
             className="carousel-wrapper"
             ref={carousel}
         >
-            <button className='carousel-button' onClick={(e) => handleGoBack()}>
+            <button className='carousel-button' onClick={() => handleGoBack()}>
                 {<DoubleArrow direction={true} />}
             </button>
             <div className="carousel-track-wrapper">
@@ -120,7 +120,7 @@ const Carousel = (props: CarouselProps) => {
                     )}
                 </ul>
             </div>
-            <button className='carousel-button' onClick={(e) => handleGoForward()}>
+            <button className='carousel-button' onClick={() => handleGoForward()}>
                 {<DoubleArrow direction={false} />}
             </button>
         </div>

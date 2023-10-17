@@ -3,10 +3,10 @@ package com.foxobyte.pokenary.util;
 import java.util.Random;
 
 public class CriticalHitCalculator {
-    private Random random = new Random();
+    private static Random random = new Random();
 
 
-    public boolean checkIsCriticalHitGeneration1(int baseSpeed, boolean ishighCritMove, boolean focus) {
+    public static boolean checkIsCriticalHitGeneration1(int baseSpeed, boolean ishighCritMove, boolean focus) {
         int threshold = random.nextInt(256);
         int chance = 0;
 
@@ -23,7 +23,7 @@ public class CriticalHitCalculator {
         return chance < threshold;
     }
 
-    public boolean checkIsCriticalHitGeneration2(int stage) {
+    public static boolean checkIsCriticalHitGeneration2(int stage) {
         int threshold = random.nextInt(256);
 
         if (stage == 0) {

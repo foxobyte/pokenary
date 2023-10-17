@@ -1,6 +1,8 @@
 package com.foxobyte.pokenary.service;
 
+import com.foxobyte.pokenary.constants.Generation;
 import com.foxobyte.pokenary.constants.Nature;
+import com.foxobyte.pokenary.dao.pokemon.EffortValues;
 import com.foxobyte.pokenary.dao.pokemon.IndividualValues;
 import com.foxobyte.pokenary.dao.Move;
 import com.foxobyte.pokenary.dao.pokemon.Pokemon;
@@ -13,7 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static com.foxobyte.pokenary.util.PokemonRNG.*;
+import static com.foxobyte.pokenary.util.RNGCalculator.*;
 import static com.foxobyte.pokenary.util.StatsCalculator.*;
 
 @Service
@@ -28,8 +30,12 @@ public class WildPokemonService {
     MoveService moveService;
     private Random random = new Random();
 
-    public WildPokemon createWildPokemon(Integer level) {
-        IndividualValues individualValues = getRandomIndividualValues();
+//    public WildPokemon createRandomWildPokemon(Generation generation) {
+//
+//    }
+
+    public WildPokemon createRandomWildPokemon(Integer level) {
+        IndividualValues individualValues = generateIndividualValues();
         individualValuesRepository.save(individualValues);
         Nature nature = getRandomNature();
         WildPokemon wildPokemon = buildWildPokemon(pokemonService.getRandomPokemon(), level, individualValues, nature);
@@ -48,7 +54,7 @@ public class WildPokemonService {
     }
 
     public WildPokemon createWildPokemon(Integer id, Integer level) throws Exception {
-        IndividualValues individualValues = getRandomIndividualValues();
+        IndividualValues individualValues = generateIndividualValues();
         individualValuesRepository.save(individualValues);
         Nature nature = getRandomNature();
         WildPokemon wildPokemon = buildWildPokemon(pokemonService.getRandomPokemon(), level, individualValues, nature);
@@ -65,6 +71,7 @@ public class WildPokemonService {
         wildPokemon.setPokemon(pokemon);
         wildPokemon.setLevel(level);
         wildPokemon.setIndividualValues(individualValues);
+        wildPokemon.setEffortValues(new EffortValues(0L, 255, 255, 255, 255, 255, 255));
         wildPokemon.setNature(nature);
 //        calculatePokemonStats(wildPokemon);
 

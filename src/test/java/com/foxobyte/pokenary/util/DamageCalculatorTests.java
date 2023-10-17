@@ -19,18 +19,16 @@ public class DamageCalculatorTests {
     @Test
     public void calculateDamageGeneration1Test() {
         /*
-         * Modeled off a level 50 Balbasaur using Absorb against a level 50 Chansey all 0 DV
+         * Modeled off a level 50 Balbasaur using Solar Beam against a level 50 Chansey all 0 DV
          * */
         List<Float> allPossibleRandomValues = IntStream.range(217, 256).mapToObj(i -> (float) i / 255).toList();
         allPossibleRandomValues.forEach(r -> {
-            Integer damage = calculateDamageGeneration1(50, 1, 101, 141, 120, 1.5f, 1f, 1f, r);
+            Integer damage = calculateBaseDamageGeneration1(50, 1, 101, 141, 120);
+            damage += (int) Math.floor((float) damage / 2);
             assertThat(damage).isBetween(49, 58);
         });
 //        Integer damage1 = calculateDamageGeneration1(50, 1, 101, 141, 20, 1.5f, 1f, 1f, 1f);
 //        assertThat(damage1).isEqualTo(12);
-        // ToDo: write tests for every level
-        // ToDo: write tests for stab
-        // ToDo: write tests for type1 type2 bonus
     }
 
     @Test
@@ -39,9 +37,10 @@ public class DamageCalculatorTests {
          * Modeled off a level 50 Balbasaur using Absorb against a level 50 Chansey all 0 DV
          * */
         List<Float> allPossibleRandomValues = IntStream.range(217, 256).mapToObj(i -> (float) i / 255).toList();
-        allPossibleRandomValues.stream().forEach(r -> {
-            Integer damage = calculateDamageGeneration2(50, 101, 141, 20, 1f, 1, 1, 1f, 1f, 1.5f, 1f, 1, r, 1);
-            assertThat(damage).isBetween(10, 12);
+        allPossibleRandomValues.forEach(r -> {
+            Integer damage = calculateBaseDamageGeneration2(50, 101, 141, 120, 1f, 1);
+            damage += (int) Math.floor((float) damage / 2);
+            assertThat(damage).isBetween(49, 58);
         });
     }
 
@@ -51,7 +50,7 @@ public class DamageCalculatorTests {
          * Modeled off a level 50 Balbasaur using Absorb against a level 50 Chansey all 0 DV
          * */
         List<Float> allPossibleRandomValues = IntStream.range(85, 101).mapToObj(i -> (float) i / 255).toList();
-        allPossibleRandomValues.stream().forEach(r -> {
+        allPossibleRandomValues.forEach(r -> {
             Integer damage = calculateDamageGeneration3(50, 20, 101, 141, 1f, 1f, 1f, 1f, 1f, 1, 1, 1, 1, 1f, 1.5f, 1f, r);
             assertThat(damage).isBetween(10, 12);
         });

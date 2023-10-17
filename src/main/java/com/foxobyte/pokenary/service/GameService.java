@@ -3,6 +3,7 @@ package com.foxobyte.pokenary.service;
 import com.foxobyte.pokenary.constants.Generation;
 import com.foxobyte.pokenary.dao.Game;
 import com.foxobyte.pokenary.dao.Move;
+import com.foxobyte.pokenary.dao.pokemon.EffortValues;
 import com.foxobyte.pokenary.dao.pokemon.PlayerPokemon;
 import com.foxobyte.pokenary.dao.pokemon.WildPokemon;
 import com.foxobyte.pokenary.exception.*;
@@ -30,7 +31,8 @@ public class GameService {
 
     public Game createGame(Generation generation) {
         Game game = new Game();
-        game.setWildPokemon(wildPokemonService.createWildPokemon(random.nextInt(100)));
+        EffortValues effortValues = new EffortValues(0L, 255, 255, 255, 255, 255, 255);
+//        game.setWildPokemon(wildPokemonService.createWildPokemon(random.nextInt(100)));
         game.setGeneration(generation);
 //        calculatePokemonStats(game.getWildPokemon());
 

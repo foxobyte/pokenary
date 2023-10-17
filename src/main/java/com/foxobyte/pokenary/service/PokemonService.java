@@ -1,5 +1,6 @@
 package com.foxobyte.pokenary.service;
 
+import com.foxobyte.pokenary.constants.Generation;
 import com.foxobyte.pokenary.dao.pokemon.Pokemon;
 import com.foxobyte.pokenary.exception.NotifiableNotFoundException;
 import com.foxobyte.pokenary.repo.PokemonRepository;
@@ -14,27 +15,27 @@ import java.util.Random;
 @Service
 public class PokemonService {
     @Autowired
-    PokemonRepository basePokemonRepository;
+    PokemonRepository pokemonRepository;
     private Random rand = new Random();
 
     public Pokemon getPokemon(Integer id) throws Exception {
-        Optional<Pokemon> pokemon = basePokemonRepository.findById(id);
+        Optional<Pokemon> pokemon = pokemonRepository.findById(id);
 
         if (!pokemon.isPresent()) throw new NotifiableNotFoundException("Pokemon with id " + id + " not found");
 
-        return basePokemonRepository.findById(id).get();
+        return pokemonRepository.findById(id).get();
     }
 
     public Pokemon getStarterPokemon(Integer id) throws Exception {
-        Optional<Pokemon> pokemon = basePokemonRepository.findById(id);
+        Optional<Pokemon> pokemon = pokemonRepository.findById(id);
 
         if (!pokemon.isPresent()) throw new NotifiableNotFoundException("Pokemon with id " + id + " not found");
 
-        return basePokemonRepository.findById(id).get();
+        return pokemonRepository.findById(id).get();
     }
 
     public List<Pokemon> getAllPokemon() throws Exception {
-        List<Pokemon> basePokemon = basePokemonRepository.findAll();
+        List<Pokemon> basePokemon = pokemonRepository.findAll();
 
         return basePokemon;
     }
@@ -42,7 +43,12 @@ public class PokemonService {
     public Pokemon getRandomPokemon() {
         Integer randomId = rand.nextInt(10) + 827; // ToDo: random can be 0
 
-        return basePokemonRepository.findById(randomId).get();
+        return pokemonRepository.findById(randomId).get();
+    }
+
+    public Pokemon getRandomPokemonByGeneration(Generation generation) {
+        List<Pokemon> pokemon = pokemonRepository.findAllPokemonByGenerationGreaterThanEqual(generation);
+        return null;
     }
 
     public List<Pokemon> addPokemon(List<Pokemon> pokemon) {
@@ -51,12 +57,12 @@ public class PokemonService {
 
         pokemon.stream().forEach(e -> {
             e.setPokemonId(0);
-            basePokemonRepository.save(e);
+            pokemonRepository.save(e);
         });
 
         watch.stop();
         System.out.println("Total Time: " + watch.getTotalTimeMillis());
 
-        return basePokemonRepository.findAll();
+        return pokemonRepository.findAll();
     }
 }

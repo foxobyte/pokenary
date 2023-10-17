@@ -10,6 +10,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -33,10 +34,14 @@ public class WildPokemon implements IPokemon {
     private Set<Move> moves;
     @OneToOne
     private IndividualValues individualValues;
+    @Transient
+    private EffortValues effortValues;
     @OneToOne
     private DeterminantValues determinantValues;
+    @Transient
+    private StatExperience statExperience;
     @ElementCollection
-    private Map<Status, Integer> status;
+    private Map<Status, PokemonStatus> statuses;
     private Nature nature;
     private Integer hp = 0;
     private Integer attack = 0;
@@ -45,16 +50,18 @@ public class WildPokemon implements IPokemon {
     private Integer specialDefense = 0;
     private Integer speed = 0;
 
-    public WildPokemon(Pokemon pokemon, Integer level, DeterminantValues determinantValues) {
+    public WildPokemon(Pokemon pokemon, Integer level, DeterminantValues determinantValues, StatExperience statExperience) {
         this.pokemon = pokemon;
         this.level = level;
         this.determinantValues = determinantValues;
+        this.statExperience = statExperience;
     }
 
-    public WildPokemon(Pokemon pokemon, Integer level, IndividualValues individualValues, Nature nature) {
+    public WildPokemon(Pokemon pokemon, Integer level, IndividualValues individualValues, EffortValues effortValues, Nature nature) {
         this.pokemon = pokemon;
         this.level = level;
         this.individualValues = individualValues;
+        this.effortValues = effortValues;
         this.nature = nature;
     }
 
@@ -62,14 +69,7 @@ public class WildPokemon implements IPokemon {
 
     }
 
-    @Override
-    @JsonIgnore
-    public EffortValues getEffortValues() {
-        return new EffortValues(0L, 0, 0, 0, 0, 0, 0);
-    }
-
-    @Override
-    public StatExperience getStatExperience() {
-        return new StatExperience(0L, 0, 0, 0, 0, 0, 0);
+    public Map<Status, PokemonStatus> getStatuses() {
+        return new HashMap<>();
     }
 }

@@ -33,9 +33,9 @@ const Home = () => {
                 </div>
             </div>
             <nav id="home-page-nav">
-                <NavLink to="/pokedex">
+                {/* <NavLink to="/pokedex">
                     Pokedex
-                </NavLink>
+                </NavLink> */}
             </nav>
             <div id="home-page-content">
                 the home page

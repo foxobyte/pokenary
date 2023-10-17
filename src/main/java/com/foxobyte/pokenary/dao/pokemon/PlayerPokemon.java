@@ -2,6 +2,7 @@ package com.foxobyte.pokenary.dao.pokemon;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.foxobyte.pokenary.constants.Nature;
+import com.foxobyte.pokenary.constants.Status;
 import com.foxobyte.pokenary.dao.Player;
 //import com.foxobyte.pokenary.dao.item.Item;
 import lombok.AllArgsConstructor;
@@ -9,6 +10,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.HashMap;
+import java.util.Map;
 
 @Entity
 @Table(name = "player_pokemon")
@@ -30,6 +33,8 @@ public class PlayerPokemon implements IPokemon {
     private IndividualValues individualValues;
     @OneToOne
     private DeterminantValues determinantValues;
+    @ElementCollection
+    private Map<Status, PokemonStatus> statuses;
     @OneToOne
     private EffortValues effortValues;
     @OneToOne
@@ -64,6 +69,10 @@ public class PlayerPokemon implements IPokemon {
     @JsonIgnore
     public EffortValues getEffortValues() {
         return new EffortValues(0L, 1, 1, 1, 1, 1, 1);
+    }
+
+    public Map<Status, PokemonStatus> getStatuses() {
+        return new HashMap<>();
     }
 
 //    @JsonIgnore

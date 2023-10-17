@@ -6,6 +6,8 @@ package com.foxobyte.pokenary.util;
  * */
 public class DamageCalculator {
     /**
+     * \(BaseDamage = min\{997, \left(\lfloor\frac{\lfloor\frac{\left( \lfloor\frac{2 \times level \times critical}{5}\rfloor + 2\right) \times power \times attack}{defense}\rfloor}{50}\rfloor \right) \}\)
+     *
      * @param level         int value of the level of the attacking Pokémon
      * @param critical      is 2 for a critical hit, and 1 if otherwise
      * @param attack        int value of the effective attack stat of the attacking Pokémon for physical category moves or
@@ -30,26 +32,27 @@ public class DamageCalculator {
      *
      * @return              int value of the damage calculated
      * */
-    public static Integer calculateDamageGeneration1(Integer level, Integer critical, Integer attack, Integer defense, Integer power, Float stab, Float type1, Float type2, Float random) {
-        Float A = (float) attack;
-        Float D = (float) defense;
-        // ToDo: Verify Equation
-        Float damage = ((float) Math.floor(((((float) (2 * level * critical) / 5) + 2) * power * (A / D)) / 50) + 2) * stab * type1 * type2;
+    public static int calculateBaseDamageGeneration1(int level, int critical, int attack, int defense, int power) {
+        float A = (float) attack;
+        float D = (float) defense;
 
-        if (damage.intValue() == 1) random = 1f;
-        damage *= random;
+        if (attack > 255 || defense > 255) {
+            A = (float) Math.floor(A / 4) % 256;
+            D = (float) Math.floor(D / 4) % 256;
+        }
 
-        return damage.intValue();
+        return (int) Math.min(997, Math.floor(Math.floor(((Math.floor(((float) (2 * level * critical) / 5)) + 2) * power * A) / D) / 50)) + 2;
     }
 
     /**
-     * @param level         int value of the level of the attacking Pokémon
+     * @param level         int value of the level of the attacking Pokémon.
      * @param attack        int value of the effective attack stat of the attacking Pokémon for physical category moves or
-     *                          int value of the effective special attack stat of the attacking Pokémon for special category moves
+     *                          int value of the effective special attack stat of the attacking Pokémon for special category moves.
      * @param defense       int value of the effective defense stat of the defending Pokémon for physical category moves or
-     *                          int value of the effective special defense stat of the defending Pokémon for special category moves
-     * @param power         int value of the power of the move being used
-     * @param item          float value of 1.1 if the attacking Pokémon is holding a type-enhancing held item. 1 otherwise
+     *                          int value of the effective special defense stat of the defending Pokémon for special category moves.
+     * @param power         int value of the power of the move being used.
+     * @param item          float value of 1.1 if the attacking Pokémon is holding a type-enhancing held item.
+     *                          float value of 1.0 otherwise.
      * @param critical      int value of 2 if the attacking Pokémon lands a critical hit, but 1 otherwise. Always 1 if the move used is Flail, Reversal or Future Sight.
      * @param tk            int value of 1, 2 or 3 for each successive hit of the move Triple Kick. Always 1 otherwise
      * @param weather       float value of 1.5 if a water-type move is being used during rain.
@@ -83,12 +86,16 @@ public class DamageCalculator {
      *
      * @return              int value of the damage calculated
      * */
-    public static Integer calculateDamageGeneration2(Integer level, Integer attack, Integer defense, Integer power, Float item, Integer critical, Integer tk, Float weather, Float badge, Float stab, Float type, Integer moveMod, Float random, Integer doubleDamage) {
-        Float A = (float) attack;
-        Float D = (float) defense;
-        // ToDo: Floor values
-        Float damage = ((((((2 * level) / 5) + 2) * power * (A / D)) / 50) * item * critical + 2) * tk * weather * badge * stab * type * moveMod * random * doubleDamage;
-        return damage.intValue();
+    public static int calculateBaseDamageGeneration2(int level, int attack, int defense, int power, float item, int critical) {
+        float A = (float) attack;
+        float D = (float) defense;
+
+        if (attack > 255 || defense > 255) {
+            A = (float) Math.floor(A / 4) % 256;
+            D = (float) Math.floor(D / 4) % 256;
+        }
+
+        return (int) (Math.min(997, Math.floor(Math.floor(((Math.floor(((float) (2 * level) / 5)) + 2) * power * A) / D) / 50)) * item * critical + 2);
     }
 
     /**
@@ -149,12 +156,12 @@ public class DamageCalculator {
      *
      * @return              int value of the damage calculated
      * */
-    public static Integer calculateDamageGeneration3(Integer level, Integer power, Integer attack, Integer defense, Float burn, Float screen, Float targets, Float weather, Float ff, Integer stockpile, Integer critical, Integer doubleDamage, Integer charge, Float hh, Float stab, Float type, Float random) {
-        Float A = (float) attack;
-        Float D = (float) defense;
-        // ToDo: Floor values
-        Float damage = ((((((2 * level) / 5) + 2) * power * (A / D)) / 50) * burn * screen * targets * weather * ff + 2) * stockpile * critical * doubleDamage * charge * hh * stab * type * random;
-        return damage.intValue();
+    public static int calculateDamageGeneration3(int level, int power, int attack, int defense, float burn, float screen, float targets, float weather, float ff, int stockpile, int critical, int doubleDamage, int charge, float hh, float stab, float type, float random) {
+        float A = (float) attack;
+        float D = (float) defense;
+        // ToDo: finish me
+        float damage = ((((((float) (2 * level) / 5) + 2) * power * (A / D)) / 50) * burn * screen * targets * weather * ff + 2) * stockpile * critical * doubleDamage * charge * hh * stab * type * random;
+        return (int) damage;
     }
 
     /**
@@ -215,12 +222,12 @@ public class DamageCalculator {
      *
      * @return              int value of the damage calculated
      * */
-    public static Integer calculateDamageGeneration4(Integer level, Integer power, Integer attack, Integer defense, Float burn, Float screen, Float targets, Float weather, Float ff, Integer critical, Float item, Float first, Float random, Float stab, Float type1, Float type2, Float srf, Float eb, Integer tl, Float berry) {
-        Float A = (float) attack;
-        Float D = (float) defense;
-        // ToDo: Floor values
-        Float damage = (((((2 * level) / 5) + 2) * power * (A / D) / 50) * burn * screen * targets * weather * ff + 2) * critical * item * first * random * stab * type1 * type2 * srf * eb * tl * berry;
-        return damage.intValue();
+    public static int calculateDamageGeneration4(int level, int power, int attack, int defense, float burn, float screen, float targets, float weather, float ff, int critical, float item, float first, float random, float stab, float type1, float type2, float srf, float eb, int tl, float berry) {
+        float A = (float) attack;
+        float D = (float) defense;
+        // ToDo: finish me
+        float damage = (((((2 * level) / 5) + 2) * power * (A / D) / 50) * burn * screen * targets * weather * ff + 2) * critical * item * first * random * stab * type1 * type2 * srf * eb * tl * berry;
+        return (int) damage;
     }
 
     /**
@@ -261,11 +268,11 @@ public class DamageCalculator {
      *
      * @return              int value of the damage calculated
      * */
-    public static Integer calculateDamageGeneration5Onward(Integer level, Integer attack, Integer defense, Integer power, Float targets, Float pb, Float weather, Integer glaiveRush, Float critical, Float random, Float stab, Float type, Float burn, Float other, Float zMove, Float teraShield) {
-        Float A = (float) attack;
-        Float D = (float) defense;
-        // ToDo: Floor values
-        Float damage = ((((((2 * level) / 5) + 2) * power * (A / D)) / 50) + 2) * targets * pb * weather * glaiveRush * critical * random * stab * type * burn * other * zMove * teraShield;
-        return damage.intValue();
+    public static int calculateDamageGeneration5Onward(int level, int attack, int defense, int power, float targets, float pb, float weather, int glaiveRush, float critical, float random, float stab, float type, float burn, float other, float zMove, float teraShield) {
+        float A = (float) attack;
+        float D = (float) defense;
+        // ToDo: finish me
+        float damage = ((((((2 * level) / 5) + 2) * power * (A / D)) / 50) + 2) * targets * pb * weather * glaiveRush * critical * random * stab * type * burn * other * zMove * teraShield;
+        return (int) damage;
     }
 }

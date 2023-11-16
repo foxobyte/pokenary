@@ -29,23 +29,22 @@ public class GameService {
 //    MoveService moveService;
     private Random random = new Random();
 
-    public Game createGame(Generation generation) {
+    public Game createGame(Generation generation) throws Exception {
         Game game = new Game();
-        EffortValues effortValues = new EffortValues(0L, 255, 255, 255, 255, 255, 255);
-//        game.setWildPokemon(wildPokemonService.createWildPokemon(random.nextInt(100)));
+//        EffortValues effortValues = new EffortValues(0L, 255, 255, 255, 255, 255, 255);
+        game.setWildPokemon(wildPokemonService.createWildPokemon(generation, 2, 50));
         game.setGeneration(generation);
-//        calculatePokemonStats(game.getWildPokemon());
+        generation.calculatePokemonStats(game.getWildPokemon());
 
         return gameRepository.save(game);
     }
 
     public Game getGame(Long gameId) throws Exception {
         Optional<Game> optionalGame = gameRepository.findById(gameId);
-        if (!optionalGame.isPresent()) throw new GameDoesntExistException("Game with Id: " + gameId + " does not exist");
+        if (optionalGame.isEmpty()) throw new GameDoesntExistException("Game with Id: " + gameId + " does not exist");
 
         Game game = optionalGame.get();
-//        game.setWildPokemon((WildPokemon) calculatePokemonStats(game.getWildPokemon()));
-//        game.getPlayerPokemon().stream().map(pokemon -> (PlayerPokemon) calculatePokemonStats(pokemon)).collect(Collectors.toSet());
+        game.getPlayerPokemon().forEach(pokemon -> game.getGeneration().calculatePokemonStats(pokemon));
 
         return game;
     }
@@ -94,6 +93,7 @@ public class GameService {
         Optional<PlayerPokemon> optionalPlayerPokemon = game.getPlayerPokemon().stream().filter(e -> e.getId().equals(playerPokemonId)).findFirst();
         if (optionalPlayerPokemon.isEmpty()) throw new PokemonIsNotInGameException("This pokemon is not in this game");
 
+        // ToDo: Queue
         PlayerPokemon playerPokemon = optionalPlayerPokemon.get();
 //        Move move = moveService.getMove(moveId);
 //        move.getCategory().move(playerPokemon, game.getWildPokemon(), move);

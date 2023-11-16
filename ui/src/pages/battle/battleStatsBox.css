@@ -1,0 +1,34 @@
+.battle-stats-box-wrapper {
+    height: 32px;
+    width: 96px;
+    background-color: red;
+}
+
+.battle-stats-box {
+
+}
+
+.battle-stats-box-title-wrapper {
+
+}
+
+.battle-stats-box-name {
+
+}
+
+.battle-stats-box-gender {
+
+}
+
+.battle-stats-box-level {
+
+}
+
+.battle-stats-box-hp {
+
+}
+
+.battle-stats-box-xp .battle-stats-box-defending {
+    display: none;
+}
+

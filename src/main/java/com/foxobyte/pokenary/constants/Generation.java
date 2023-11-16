@@ -3,7 +3,9 @@ package com.foxobyte.pokenary.constants;
 import com.fasterxml.jackson.annotation.JsonValue;
 import com.foxobyte.pokenary.dao.Game;
 import com.foxobyte.pokenary.dao.Move;
+import com.foxobyte.pokenary.dao.pokemon.DeterminantValues;
 import com.foxobyte.pokenary.dao.pokemon.IPokemon;
+import com.foxobyte.pokenary.dao.pokemon.IStatValues;
 
 import java.util.List;
 import java.util.Set;
@@ -11,6 +13,7 @@ import java.util.Set;
 import static com.foxobyte.pokenary.util.CriticalHitCalculator.checkIsCriticalHitGeneration1;
 import static com.foxobyte.pokenary.util.DamageCalculator.calculateBaseDamageGeneration1;
 import static com.foxobyte.pokenary.util.RNGCalculator.calculateRandomGeneration1To2;
+import static com.foxobyte.pokenary.util.RNGCalculator.generateDeterminantValues;
 import static com.foxobyte.pokenary.util.StatsCalculator.*;
 
 public enum Generation implements IGeneration {
@@ -40,98 +43,98 @@ public enum Generation implements IGeneration {
         @Override
         public IPokemon calculatePokemonStats(IPokemon pokemon) {
             calculatePokemonStatsWithDeterminantValues(pokemon);
-            pokemon.setHp(calculatePokemonHpGen1And2(pokemon.getPokemon().getHp(), pokemon.getDeterminantValues().getHp(), pokemon.getStatExperience().getHp(), pokemon.getLevel()));
-            return pokemon;
-        }
-    },
-    TWO(2) {
-        @Override
-        public int calculateDamage(IPokemon attackingPokemon, IPokemon defendingPokemon, Move move, Game game) {
-            return 0;
-        }
-
-        @Override
-        public IPokemon calculatePokemonStats(IPokemon pokemon) {
-            return pokemon;
-        }
-    },
-    THREE(3) {
-        @Override
-        public int calculateDamage(IPokemon attackingPokemon, IPokemon defendingPokemon, Move move, Game game) {
-            return 0;
-        }
-
-        @Override
-        public IPokemon calculatePokemonStats(IPokemon pokemon) {
-            return pokemon;
-        }
-    },
-    FOUR(4) {
-        @Override
-        public int calculateDamage(IPokemon attackingPokemon, IPokemon defendingPokemon, Move move, Game game) {
-            return 0;
-        }
-
-        @Override
-        public IPokemon calculatePokemonStats(IPokemon pokemon) {
-            return pokemon;
-        }
-    },
-    FIVE(5) {
-        @Override
-        public int calculateDamage(IPokemon attackingPokemon, IPokemon defendingPokemon, Move move, Game game) {
-            return 0;
-        }
-
-        @Override
-        public IPokemon calculatePokemonStats(IPokemon pokemon) {
-            return pokemon;
-        }
-    },
-    SIX(6) {
-        @Override
-        public int calculateDamage(IPokemon attackingPokemon, IPokemon defendingPokemon, Move move, Game game) {
-            return 0;
-        }
-
-        @Override
-        public IPokemon calculatePokemonStats(IPokemon pokemon) {
-            return pokemon;
-        }
-    },
-    SEVEN(7) {
-        @Override
-        public int calculateDamage(IPokemon attackingPokemon, IPokemon defendingPokemon, Move move, Game game) {
-            return 0;
-        }
-
-        @Override
-        public IPokemon calculatePokemonStats(IPokemon pokemon) {
-            return pokemon;
-        }
-    },
-    EIGHT(8) {
-        @Override
-        public int calculateDamage(IPokemon attackingPokemon, IPokemon defendingPokemon, Move move, Game game) {
-            return 0;
-        }
-
-        @Override
-        public IPokemon calculatePokemonStats(IPokemon pokemon) {
-            return pokemon;
-        }
-    },
-    NINE(9) {
-        @Override
-        public int calculateDamage(IPokemon attackingPokemon, IPokemon defendingPokemon, Move move, Game game) {
-            return 0;
-        }
-
-        @Override
-        public IPokemon calculatePokemonStats(IPokemon pokemon) {
+            pokemon.setHp(calculatePokemonHpGen1And2(pokemon.getPokemon().getHp(), pokemon.getDeterminantValues().getHp(), pokemon.getStatsExperience().getHp(), pokemon.getLevel()));
             return pokemon;
         }
     };
+//    TWO(2) {
+//        @Override
+//        public int calculateDamage(IPokemon attackingPokemon, IPokemon defendingPokemon, Move move, Game game) {
+//            return 0;
+//        }
+//
+//        @Override
+//        public IPokemon calculatePokemonStats(IPokemon pokemon) {
+//            return pokemon;
+//        }
+//    },
+//    THREE(3) {
+//        @Override
+//        public int calculateDamage(IPokemon attackingPokemon, IPokemon defendingPokemon, Move move, Game game) {
+//            return 0;
+//        }
+//
+//        @Override
+//        public IPokemon calculatePokemonStats(IPokemon pokemon) {
+//            return pokemon;
+//        }
+//    },
+//    FOUR(4) {
+//        @Override
+//        public int calculateDamage(IPokemon attackingPokemon, IPokemon defendingPokemon, Move move, Game game) {
+//            return 0;
+//        }
+//
+//        @Override
+//        public IPokemon calculatePokemonStats(IPokemon pokemon) {
+//            return pokemon;
+//        }
+//    },
+//    FIVE(5) {
+//        @Override
+//        public int calculateDamage(IPokemon attackingPokemon, IPokemon defendingPokemon, Move move, Game game) {
+//            return 0;
+//        }
+//
+//        @Override
+//        public IPokemon calculatePokemonStats(IPokemon pokemon) {
+//            return pokemon;
+//        }
+//    },
+//    SIX(6) {
+//        @Override
+//        public int calculateDamage(IPokemon attackingPokemon, IPokemon defendingPokemon, Move move, Game game) {
+//            return 0;
+//        }
+//
+//        @Override
+//        public IPokemon calculatePokemonStats(IPokemon pokemon) {
+//            return pokemon;
+//        }
+//    },
+//    SEVEN(7) {
+//        @Override
+//        public int calculateDamage(IPokemon attackingPokemon, IPokemon defendingPokemon, Move move, Game game) {
+//            return 0;
+//        }
+//
+//        @Override
+//        public IPokemon calculatePokemonStats(IPokemon pokemon) {
+//            return pokemon;
+//        }
+//    },
+//    EIGHT(8) {
+//        @Override
+//        public int calculateDamage(IPokemon attackingPokemon, IPokemon defendingPokemon, Move move, Game game) {
+//            return 0;
+//        }
+//
+//        @Override
+//        public IPokemon calculatePokemonStats(IPokemon pokemon) {
+//            return pokemon;
+//        }
+//    },
+//    NINE(9) {
+//        @Override
+//        public int calculateDamage(IPokemon attackingPokemon, IPokemon defendingPokemon, Move move, Game game) {
+//            return 0;
+//        }
+//
+//        @Override
+//        public IPokemon calculatePokemonStats(IPokemon pokemon) {
+//            return pokemon;
+//        }
+//    };
 
     private Integer generation;
 

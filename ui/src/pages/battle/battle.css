@@ -1,5 +1,20 @@
 .battle-field-wrapper {
     background-color: transparent;
-    height: 102px;
-    width: 102px;
+    height: 100%;
+    /* width: 300px; */
+    /* background-color: rgba(0, 0, 0, 0.3); */
+}
+
+#battle-field-attacking {
+    position: relative;
+    /* left: 148px; */
+    height: 120px;
+    width: 100%;
+}
+
+#battle-field-defending {
+    position: relative;
+    /* left: 10px; */
+    height: 120px;
+    width: 100%;
 }

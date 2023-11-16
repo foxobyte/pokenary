@@ -2,10 +2,8 @@ package com.foxobyte.pokenary.dao.pokemon;
 
 import com.foxobyte.pokenary.constants.Nature;
 import com.foxobyte.pokenary.constants.Status;
-import com.foxobyte.pokenary.constants.Type;
 
 import java.util.Map;
-import java.util.Set;
 
 public interface IPokemon {
     Pokemon getPokemon();
@@ -27,7 +25,8 @@ public interface IPokemon {
     Nature getNature();
     IndividualValues getIndividualValues();
     EffortValues getEffortValues();
+    void setDeterminantValues(DeterminantValues determinantValues);
     DeterminantValues getDeterminantValues();
-    StatExperience getStatExperience();
+    StatsExperience getStatsExperience();
     Map<Status, PokemonStatus> getStatuses();
 }

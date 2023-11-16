@@ -39,7 +39,7 @@ public class WildPokemon implements IPokemon {
     @OneToOne
     private DeterminantValues determinantValues;
     @Transient
-    private StatExperience statExperience;
+    private StatsExperience statsExperience;
     @ElementCollection
     private Map<Status, PokemonStatus> statuses;
     private Nature nature;
@@ -50,11 +50,11 @@ public class WildPokemon implements IPokemon {
     private Integer specialDefense = 0;
     private Integer speed = 0;
 
-    public WildPokemon(Pokemon pokemon, Integer level, DeterminantValues determinantValues, StatExperience statExperience) {
+    public WildPokemon(Pokemon pokemon, Integer level, DeterminantValues determinantValues, StatsExperience statsExperience) {
         this.pokemon = pokemon;
         this.level = level;
         this.determinantValues = determinantValues;
-        this.statExperience = statExperience;
+        this.statsExperience = statsExperience;
     }
 
     public WildPokemon(Pokemon pokemon, Integer level, IndividualValues individualValues, EffortValues effortValues, Nature nature) {

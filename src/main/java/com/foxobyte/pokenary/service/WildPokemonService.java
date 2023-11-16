@@ -2,11 +2,9 @@ package com.foxobyte.pokenary.service;
 
 import com.foxobyte.pokenary.constants.Generation;
 import com.foxobyte.pokenary.constants.Nature;
-import com.foxobyte.pokenary.dao.pokemon.EffortValues;
-import com.foxobyte.pokenary.dao.pokemon.IndividualValues;
+import com.foxobyte.pokenary.dao.pokemon.*;
 import com.foxobyte.pokenary.dao.Move;
-import com.foxobyte.pokenary.dao.pokemon.Pokemon;
-import com.foxobyte.pokenary.dao.pokemon.WildPokemon;
+import com.foxobyte.pokenary.repo.DeterminantValuesRepository;
 import com.foxobyte.pokenary.repo.IndividualValuesRepository;
 import com.foxobyte.pokenary.repo.WildPokemonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.foxobyte.pokenary.util.RNGCalculator.*;
-import static com.foxobyte.pokenary.util.StatsCalculator.*;
 
 @Service
 public class WildPokemonService {
@@ -24,6 +21,8 @@ public class WildPokemonService {
     WildPokemonRepository wildPokemonRepository;
     @Autowired
     IndividualValuesRepository individualValuesRepository;
+    @Autowired
+    DeterminantValuesRepository determinantValuesRepository;
     @Autowired
     PokemonService pokemonService;
     @Autowired
@@ -53,13 +52,23 @@ public class WildPokemonService {
         return wildPokemonRepository.save(wildPokemon);
     }
 
-    public WildPokemon createWildPokemon(Integer id, Integer level) throws Exception {
-        IndividualValues individualValues = generateIndividualValues();
-        individualValuesRepository.save(individualValues);
-        Nature nature = getRandomNature();
-        WildPokemon wildPokemon = buildWildPokemon(pokemonService.getRandomPokemon(), level, individualValues, nature);
+    public WildPokemon createWildPokemon(Generation generation, Integer id, Integer level) throws Exception {
+        WildPokemon wildPokemon = new WildPokemon();
+        wildPokemon.setPokemon(pokemonService.getPokemon(id));
+        wildPokemon.setLevel(level);
 
-        return wildPokemon;
+        if (generation.getGeneration() < 3) {
+            // ToDo: Implement personality values
+            DeterminantValues determinantValues = determinantValuesRepository.save(generateDeterminantValues());
+            wildPokemon.setDeterminantValues(determinantValues);
+            wildPokemon.setStatsExperience(new StatsExperience(0L, 0, 0, 0, 0, 0, 0));
+        } else {
+            IndividualValues individualValues = individualValuesRepository.save(generateIndividualValues());
+            wildPokemon.setIndividualValues(individualValues);
+            wildPokemon.setEffortValues(new EffortValues(0L, 0, 0, 0, 0, 0, 0));
+        }
+
+        return wildPokemonRepository.save(wildPokemon);
     }
 
     public WildPokemon getWildPokemon(Long id) {

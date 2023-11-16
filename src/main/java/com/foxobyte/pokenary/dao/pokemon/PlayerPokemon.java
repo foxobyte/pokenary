@@ -38,7 +38,7 @@ public class PlayerPokemon implements IPokemon {
     @OneToOne
     private EffortValues effortValues;
     @OneToOne
-    private StatExperience statExperience;
+    private StatsExperience statsExperience;
 //    @OneToOne
 //    private Item heldItem;
 //    @ElementCollection
@@ -63,6 +63,10 @@ public class PlayerPokemon implements IPokemon {
 
     public void setPokemon() {
 
+    }
+
+    public Pokemon getPokemon() {
+        return this.pokemon;
     }
 
     @Override

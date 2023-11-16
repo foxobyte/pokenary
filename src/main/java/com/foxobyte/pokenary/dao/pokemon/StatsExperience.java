@@ -16,7 +16,7 @@ import javax.validation.constraints.Min;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class StatExperience {
+public class StatsExperience {
     @Id
     @GeneratedValue
     private Long id;

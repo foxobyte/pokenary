@@ -1,7 +1,0 @@
-.battle-patch {
-    height: 148px;
-    width: 148px;
-    border-radius: 50%;
-    background: radial-gradient(circle at center, rgb(52, 165, 150), rgb(2, 90, 61));
-    transform: rotateX(65deg)
-}

@@ -272,7 +272,7 @@ public class DamageCalculator {
         float A = (float) attack;
         float D = (float) defense;
         // ToDo: finish me
-        float damage = ((((((2 * level) / 5) + 2) * power * (A / D)) / 50) + 2) * targets * pb * weather * glaiveRush * critical * random * stab * type * burn * other * zMove * teraShield;
+        float damage = ((((((float) (2 * level) / 5) + 2) * power * (A / D)) / 50) + 2) * targets * pb * weather * glaiveRush * critical * random * stab * type * burn * other * zMove * teraShield;
         return (int) damage;
     }
 }

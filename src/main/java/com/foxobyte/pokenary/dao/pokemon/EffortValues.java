@@ -1,6 +1,8 @@
 package com.foxobyte.pokenary.dao.pokemon;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
@@ -10,6 +12,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "effort_values")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class EffortValues {
     @Id
     @GeneratedValue
@@ -20,28 +24,6 @@ public class EffortValues {
     private int specialAttack;
     private int specialDefense;
     private int speed;
-
-    public EffortValues(Long effortValueId, Integer hp, Integer attack, Integer defense, Integer specialAttack, Integer specialDefense, Integer speed) {
-        this.effortValueId = effortValueId;
-        this.hp = hp;
-        this.attack = attack;
-        this.defense = defense;
-        this.specialAttack = specialAttack;
-        this.specialDefense = specialDefense;
-        this.speed = speed;
-    }
-
-    public Long getEffortValueId() {
-        return effortValueId;
-    }
-
-    public void setEffortValueId(Long effortValueId) {
-        this.effortValueId = effortValueId;
-    }
-
-    public Integer getHp() {
-        return hp;
-    }
 
     public void addHp(int hp) {
         if (getTotal() + hp > 510) {

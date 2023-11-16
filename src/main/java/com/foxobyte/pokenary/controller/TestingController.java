@@ -28,11 +28,12 @@ public class TestingController {
 
     @PostMapping("/player/pokemon")
     public ResponseEntity<PlayerPokemon> createPlayerPokemon(
+            @RequestParam Generation generation,
             @RequestBody PlayerPokemon playerPokemon
     ) {
         try {
             return new ResponseEntity<PlayerPokemon>(
-                    playerPokemonService.createPlayerPokemon(playerPokemon),
+                    playerPokemonService.createPlayerPokemon(generation, playerPokemon),
                     HttpStatus.CREATED
             );
         } catch (Exception e) {

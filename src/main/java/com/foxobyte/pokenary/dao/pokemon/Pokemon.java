@@ -22,7 +22,6 @@ import java.util.SortedSet;
 @NoArgsConstructor
 @AllArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
-//@JsonDeserialize(using = CustomerJsonDeserializer.class)
 public class Pokemon {
     @Id
     @GeneratedValue

@@ -9,11 +9,11 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 @Entity
-@Table(name = "determinant_value")
+@Table(name = "determinant_values")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DeterminantValues {
+public class DeterminantValues implements IStatValues {
     @Id
     @GeneratedValue
     private Long id;

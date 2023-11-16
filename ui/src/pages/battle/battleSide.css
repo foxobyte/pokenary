@@ -1,0 +1,19 @@
+.battle-side-wrapper {
+    height: 50%;
+    width: 100%;
+    padding: 8px;
+}
+
+.battle-side {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.battle-patch {
+    border-radius: 50%;
+    /* background: radial-gradient(circle at center, rgb(52, 165, 150), rgb(2, 90, 61)); */
+    /* transform: rotateX(65deg) */
+}

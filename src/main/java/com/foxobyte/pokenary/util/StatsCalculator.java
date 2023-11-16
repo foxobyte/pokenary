@@ -13,12 +13,12 @@ public class StatsCalculator {
     private static int leastSignificantBitMask = 1;
 
     public static IPokemon calculatePokemonStatsWithDeterminantValues(IPokemon pokemon) {
-        pokemon.setHp(calculatePokemonHpGen1And2(pokemon.getPokemon().getHp(), pokemon.getDeterminantValues().getHp(), pokemon.getStatExperience().getHp(), pokemon.getLevel()));
-        pokemon.setAttack(calculatePokemonStatGen1And2(pokemon.getPokemon().getAttack(), pokemon.getDeterminantValues().getAttack(), pokemon.getStatExperience().getAttack(), pokemon.getLevel()));
-        pokemon.setDefense(calculatePokemonStatGen1And2(pokemon.getPokemon().getDefense(), pokemon.getDeterminantValues().getDefense(), pokemon.getStatExperience().getDefense(), pokemon.getLevel()));
-        pokemon.setSpecialAttack(calculatePokemonStatGen1And2(pokemon.getPokemon().getSpecialAttack(), pokemon.getDeterminantValues().getSpecialAttack(), pokemon.getStatExperience().getSpecialAttack(), pokemon.getLevel()));
-        pokemon.setSpecialDefense(calculatePokemonStatGen1And2(pokemon.getPokemon().getSpecialDefense(), pokemon.getDeterminantValues().getSpecialDefense(), pokemon.getStatExperience().getSpecialDefense(), pokemon.getLevel()));
-        pokemon.setSpeed(calculatePokemonStatGen1And2(pokemon.getPokemon().getSpeed(), pokemon.getDeterminantValues().getSpeed(), pokemon.getStatExperience().getSpeed(), pokemon.getLevel()));
+        pokemon.setHp(calculatePokemonHpGen1And2(pokemon.getPokemon().getHp(), pokemon.getDeterminantValues().getHp(), pokemon.getStatsExperience().getHp(), pokemon.getLevel()));
+        pokemon.setAttack(calculatePokemonStatGen1And2(pokemon.getPokemon().getAttack(), pokemon.getDeterminantValues().getAttack(), pokemon.getStatsExperience().getAttack(), pokemon.getLevel()));
+        pokemon.setDefense(calculatePokemonStatGen1And2(pokemon.getPokemon().getDefense(), pokemon.getDeterminantValues().getDefense(), pokemon.getStatsExperience().getDefense(), pokemon.getLevel()));
+        pokemon.setSpecialAttack(calculatePokemonStatGen1And2(pokemon.getPokemon().getSpecialAttack(), pokemon.getDeterminantValues().getSpecialAttack(), pokemon.getStatsExperience().getSpecialAttack(), pokemon.getLevel()));
+        pokemon.setSpecialDefense(calculatePokemonStatGen1And2(pokemon.getPokemon().getSpecialDefense(), pokemon.getDeterminantValues().getSpecialDefense(), pokemon.getStatsExperience().getSpecialDefense(), pokemon.getLevel()));
+        pokemon.setSpeed(calculatePokemonStatGen1And2(pokemon.getPokemon().getSpeed(), pokemon.getDeterminantValues().getSpeed(), pokemon.getStatsExperience().getSpeed(), pokemon.getLevel()));
 
         return pokemon;
     }

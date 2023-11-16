@@ -25,12 +25,12 @@ public class StatsCalculatorTests {
     @Test
     public void calculatePokemonStatsWithDeterminantValuesTest() {
         Pokemon bulbasaur = new Pokemon(1, "Bulbasaur", List.of(Type.GRASS, Type.POISON), 45, 49, 49, 65, 65, 45);
-        StatExperience minStatExperience = new StatExperience(1L, 0, 0, 0, 0, 0, 0);
-        StatExperience maxStatExperience = new StatExperience(1L, 65535, 65535, 65535, 65535, 65535, 65535);
+        StatsExperience minStatsExperience = new StatsExperience(1L, 0, 0, 0, 0, 0, 0);
+        StatsExperience maxStatsExperience = new StatsExperience(1L, 65535, 65535, 65535, 65535, 65535, 65535);
         DeterminantValues minDeterminantValues = new DeterminantValues(1L, 0, 0, 0, 0, 0, 0);
         DeterminantValues maxDeterminantValues = new DeterminantValues(1L, 15, 15, 15, 15, 15, 15);
 
-        WildPokemon bulbasaur1 = new WildPokemon(bulbasaur, 100, minDeterminantValues, minStatExperience);
+        WildPokemon bulbasaur1 = new WildPokemon(bulbasaur, 100, minDeterminantValues, minStatsExperience);
         calculatePokemonStatsWithDeterminantValues(bulbasaur1);
         assertThat(bulbasaur1.getHp()).isEqualTo(200);
         assertThat(bulbasaur1.getAttack()).isEqualTo(103);
@@ -39,7 +39,7 @@ public class StatsCalculatorTests {
         assertThat(bulbasaur1.getSpecialDefense()).isEqualTo(135);
         assertThat(bulbasaur1.getSpeed()).isEqualTo(95);
 
-        WildPokemon bulbasaur2 = new WildPokemon(bulbasaur, 100, maxDeterminantValues, minStatExperience);
+        WildPokemon bulbasaur2 = new WildPokemon(bulbasaur, 100, maxDeterminantValues, minStatsExperience);
         calculatePokemonStatsWithDeterminantValues(bulbasaur2);
         assertThat(bulbasaur2.getHp()).isEqualTo(230);
         assertThat(bulbasaur2.getAttack()).isEqualTo(133);
@@ -48,7 +48,7 @@ public class StatsCalculatorTests {
         assertThat(bulbasaur2.getSpecialDefense()).isEqualTo(165);
         assertThat(bulbasaur2.getSpeed()).isEqualTo(125);
 
-        WildPokemon bulbasaur3 = new WildPokemon(bulbasaur, 100, minDeterminantValues, maxStatExperience);
+        WildPokemon bulbasaur3 = new WildPokemon(bulbasaur, 100, minDeterminantValues, maxStatsExperience);
         calculatePokemonStatsWithDeterminantValues(bulbasaur3);
         assertThat(bulbasaur3.getHp()).isEqualTo(264);
         assertThat(bulbasaur3.getAttack()).isEqualTo(167);
@@ -57,7 +57,7 @@ public class StatsCalculatorTests {
         assertThat(bulbasaur3.getSpecialDefense()).isEqualTo(199);
         assertThat(bulbasaur3.getSpeed()).isEqualTo(159);
 
-        WildPokemon bulbasaur4 = new WildPokemon(bulbasaur, 100, maxDeterminantValues, maxStatExperience);
+        WildPokemon bulbasaur4 = new WildPokemon(bulbasaur, 100, maxDeterminantValues, maxStatsExperience);
         calculatePokemonStatsWithDeterminantValues(bulbasaur4);
         assertThat(bulbasaur4.getHp()).isEqualTo(294);
         assertThat(bulbasaur4.getAttack()).isEqualTo(197);

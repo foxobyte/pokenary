@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class IndividualValues {
+public class IndividualValues implements IStatValues {
     @Id
     @GeneratedValue
     private Long individualValuesId;

@@ -1,4 +1,4 @@
-type Pokemon = {
+type PokemonType = {
     id: number,
     name: string,
     nationalNumber: number,
@@ -11,4 +11,4 @@ type Pokemon = {
     speed: number
 }
 
-export default Pokemon
+export default PokemonType

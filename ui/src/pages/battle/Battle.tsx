@@ -1,20 +1,25 @@
 import React from 'react';
 import './battle.css';
-import BattlePatch from './BattlePatch';
-import PokemonSprite from './PokemonSprite';
+import BattleSide from './BattleSide';
 
 const Battle = () => {
-    let image = "https://img.pokemondb.net/sprites/black-white/anim/normal/bulbasaur.gif"
+    let pokemon = {
+        id: 1, 
+        name: "pokemon", 
+        nationalNumber: 1, 
+        pokemonType: ["Grass"], 
+        hp: 50, 
+        attack: 50, 
+        defense: 50, 
+        spAttack: 50, 
+        spDefense: 50, 
+        speed: 50
+    }
+
     return(
         <div className='battle-field-wrapper'>
-            <div id="battle-field-defending" className='battle-patch-wrapper'>
-                <PokemonSprite image={image} />
-                <BattlePatch />
-            </div>
-            <div id="battle-field-attacking" className='battle-patch-wrapper'>
-                <PokemonSprite image={image} />
-                <BattlePatch />
-            </div>
+            <BattleSide attacking={false} pokemon={pokemon}/>
+            <BattleSide attacking={true} pokemon={pokemon}/>
         </div>
     )
 }
